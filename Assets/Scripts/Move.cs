@@ -19,9 +19,9 @@ public class Move : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			//Buscamos el click respecto a la escena, target seria la posicion final
 			target = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			RaycastHit2D hitSuelo=Physics2D.Raycast(target,Vector2.zero);
+			//RaycastHit2D hitSuelo=Physics2D.Raycast(target,Vector2.zero);
 			Debug.Log ("Posicion destino: "+target);
-			Debug.Log ("Ray en 2D: "+hitSuelo.collider);
+			//Debug.Log ("Ray en 2D: "+hitSuelo.collider.gameObject.tag);
 
 		}
 

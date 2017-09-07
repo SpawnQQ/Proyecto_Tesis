@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B7F3F325-B1D5-BEF1-2D1E-B977F3C7B1C9}</ProjectGuid>
+    <ProjectGuid>{7AF44F8F-E1D8-5275-4407-DD7FEBC0DD5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,7 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Move.cs" />
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>C:/Users/Nicolas/Documents/Proyecto Tesis/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>C:/Users/Nicolas/Documents/Proyecto_Tesis/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
