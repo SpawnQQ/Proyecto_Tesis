@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Suelo
   - Objeto
+  - Obstaculo
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 948959099
+    locked: 0
+  - name: Obstaculo
+    uniqueID: 2572798199
+    locked: 0
+  - name: Player
+    uniqueID: 1380909657
     locked: 0
