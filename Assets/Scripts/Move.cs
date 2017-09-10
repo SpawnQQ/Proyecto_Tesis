@@ -12,8 +12,13 @@ public class Move : MonoBehaviour {
 	bool moving;
 	Vector2 target;
 
+	void Awake(){
+		
+	}
+
 	void Start () {
 		moving = false;
+
 	}
 		
 	void Update () {
@@ -52,5 +57,9 @@ public class Move : MonoBehaviour {
 				moving = false;
 			}
 		}
+	}
+
+	void RutasNavegacion(){
+	
 	}
 }

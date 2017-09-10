@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Dollyta.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>C:/Users/Nicolas/Documents/Proyecto_Tesis/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>

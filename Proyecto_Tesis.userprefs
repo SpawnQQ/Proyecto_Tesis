@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Move.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dollyta.cs">
     <Files>
-      <File FileName="Assets\Scripts\Move.cs" Line="19" Column="7" />
+      <File FileName="Assets\Scripts\Move.cs" Line="41" Column="78" />
+      <File FileName="Assets\Scripts\Dollyta.cs" Line="18" Column="54" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
