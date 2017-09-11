@@ -240,9 +240,6 @@ MonoBehaviour:
   speed: 5
   indicador: {fileID: 899347087}
   player: {fileID: 1846397156}
-  notToHit:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &899347087
 GameObject:
   m_ObjectHideFlags: 0
