@@ -5,7 +5,7 @@ using Mono.Data.Sqlite;
 using System.Data; 
 using System;
 
-public class DBConectors : MonoBehaviour {
+public class DBConnector : MonoBehaviour {
 
 	private SqliteConnection _conexion;
 	private SqliteCommand _command;
@@ -18,5 +18,31 @@ public class DBConectors : MonoBehaviour {
 		_conexion.Open ();
 	}
 
+	public void SelectDataPersonaje(){
+		_query="SELECT * FROM Personaje";
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_reader = _command.ExecuteReader ();
 
+		if(_reader != null){
+			while(_reader.Read()){
+				print (_reader.GetValue(1).ToString()+" - "+_reader.GetValue(2).ToString());
+			}
+		}
+	}
+
+	public void InsertDataPersonaje(string _name,char _genus){
+		_query = "INSERT INTO Personaje VALUES('"+null+"', '"+_name+"', '"+_query+"')";
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_command.ExecuteReader ();
+	}
+
+	public void CloseDB (){
+		_reader.Close ();
+		_reader = null;
+		_command = null;
+		_conexion.Close ();
+		_conexion = null;
+	}
 }

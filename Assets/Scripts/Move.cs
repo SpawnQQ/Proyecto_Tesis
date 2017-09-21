@@ -17,11 +17,19 @@ public class Move : MonoBehaviour {
 	float tiempo_texto=3;
 	bool hablaRaton;
 
+	private DBConnector _connector;
 
 	void Start () {
 		moving = false;
 		hablaRaton = false;
 		secondsCounter=0;
+
+		//Creamos personaje
+		_connector=gameObject.AddComponent<DBConnector> ();
+		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
+		//_connector.InsertDataPersonaje ("nicolas",'M');
+		_connector.SelectDataPersonaje ();
+		_connector.CloseDB ();
 	}
 		
 	void Update () {
