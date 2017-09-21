@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Move : MonoBehaviour {
 
@@ -10,10 +11,17 @@ public class Move : MonoBehaviour {
 
 	bool moving;
 	Vector2 target;
+	public Text textoRaton;
+
+	float secondsCounter;
+	float tiempo_texto=3;
+	bool hablaRaton;
+
 
 	void Start () {
-
 		moving = false;
+		hablaRaton = false;
+		secondsCounter=0;
 	}
 		
 	void Update () {
@@ -51,6 +59,10 @@ public class Move : MonoBehaviour {
 						//NavMesh2D (originPosition,mousePosition,hit.point);
 						moving = false;
 						Debug.Log ("Hey!, no llego a ese lugar");
+						textoRaton.text = "" + "Hey!, no llego a ese lugar";
+
+						//Aca decimos que comienza a contar el tiempo;
+						hablaRaton = true;
 					} else {
 						Debug.Log ("Hay un obstaculo");
 						moving = false;
@@ -62,6 +74,15 @@ public class Move : MonoBehaviour {
 				}
 			} else {
 				moving = true;
+			}
+		}
+
+		if(hablaRaton==true){
+			secondsCounter += Time.deltaTime;
+			if(secondsCounter>=tiempo_texto){
+				textoRaton.text = "";
+				secondsCounter = 0;
+				hablaRaton = false;
 			}
 		}
 
