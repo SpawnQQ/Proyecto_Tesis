@@ -26,16 +26,47 @@ public class DBConnector : MonoBehaviour {
 
 		if(_reader != null){
 			while(_reader.Read()){
-				print (_reader.GetValue(1).ToString()+" - "+_reader.GetValue(2).ToString());
+				print (_reader.GetValue(0).ToString()+": "+_reader.GetValue(1).ToString()+", "+_reader.GetValue(2).ToString());
 			}
 		}
 	}
 
 	public void InsertDataPersonaje(string _name,char _genus){
-		_query = "INSERT INTO Personaje VALUES('"+null+"', '"+_name+"', '"+_query+"')";
+		_query = "INSERT INTO Personaje (name,genus) VALUES('"+_name+"', '"+_genus+"')";
 		_command = _conexion.CreateCommand ();
 		_command.CommandText = _query;
-		_command.ExecuteReader ();
+		_command.ExecuteNonQuery ();
+	}
+
+	public void ResetDataPersonaje(){
+		_query="DELETE FROM Personaje";
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_command.ExecuteNonQuery ();
+		_query="DELETE FROM sqlite_sequence WHERE name='Personaje'";
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_command.ExecuteNonQuery ();
+	}
+
+	public void SelectDataObjeto(int _id_personaje){
+		_query = "SELECT * FROM Objeto WHERE id_personaje=" + _id_personaje;
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_reader = _command.ExecuteReader ();
+
+		if(_reader != null){
+			while(_reader.Read()){
+				print (_reader.GetValue(0).ToString()+": "+_reader.GetValue(1).ToString()+", "+_reader.GetValue(2).ToString()+", "+_reader.GetValue(3).ToString()+", "+_reader.GetValue(4).ToString());
+			}
+		}
+	}
+
+	public void InsertDataObjeto(string _name, string _description,int lot,int _id_personaje){
+		_query = "INSERT INTO Objeto (name,description,lot,id_personaje) VALUES('" + _name + "', '" + _description + "', '" + lot + "', '" + _id_personaje + "')";
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_command.ExecuteNonQuery ();
 	}
 
 	public void CloseDB (){

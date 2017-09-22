@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Move : MonoBehaviour {
+public class GameController : MonoBehaviour {
 
 	public float speed;
 	public GameObject indicador;
@@ -28,12 +28,16 @@ public class Move : MonoBehaviour {
 		_connector=gameObject.AddComponent<DBConnector> ();
 		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
 		//_connector.InsertDataPersonaje ("nicolas",'M');
+		//_connector.ResetDataPersonaje ();
 		_connector.SelectDataPersonaje ();
 		_connector.CloseDB ();
 	}
 		
 	void Update () {
-		
+		movimientoRaton ();
+	}
+
+	void movimientoRaton (){
 		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 
 		//Se puede asignar un objeto "Raton" y asignarlo en vez de asumir que raton es el propietario de este script
@@ -42,11 +46,11 @@ public class Move : MonoBehaviour {
 
 		Debug.DrawLine (originPosition, mousePosition, Color.green);
 		indicador.transform.position = mousePosition;
-	
+
 		//Debug.Log (hit.collider.tag);
 		if (hit.collider != null) {
 			Debug.DrawLine (hit.point,mousePosition , Color.red);
-			Debug.DrawLine (originPosition, hit.point, Color.gray);
+			Debug.DrawLine (originPosition, hit.point, Color.green);
 
 		}
 
@@ -58,12 +62,11 @@ public class Move : MonoBehaviour {
 			target = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 			if (hit.collider != null) {
 				if (hit.collider.CompareTag ("Obstaculo")) {
-					
+
 					//Verificamos si el usuario clickea sobre el objeto, esto nos dira que es inaccesible
 					Collider2D checkHitPosition = Physics2D.OverlapPoint (mousePosition);
 
 					if (checkHitPosition != null) {
-						Debug.Log (checkHitPosition.tag);
 						//NavMesh2D (originPosition,mousePosition,hit.point);
 						moving = false;
 						Debug.Log ("Hey!, no llego a ese lugar");
