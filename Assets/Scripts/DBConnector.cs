@@ -31,6 +31,39 @@ public class DBConnector : MonoBehaviour {
 		}
 	}
 
+	public int GetIdPersonaje(string _name){
+		_query = "SELECT * FROM Personaje WHERE name=" + _name;
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_reader = _command.ExecuteReader ();
+
+		if (_reader != null) {
+			while (_reader.Read ()) {
+				return _reader.GetInt32 (0);
+			}
+		}
+
+		//No encontro registro
+		return 0;
+	}
+
+	public bool ValidateNamePersonaje(string _name){
+		
+		_query = "SELECT * FROM Personaje";
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_reader = _command.ExecuteReader ();
+		if (_reader != null) {
+			while (_reader.Read ()) {
+				if(_reader.GetValue(1).ToString().Equals(_name)){
+					return true;
+				}
+			}
+		}
+
+		//No encontro registro con el nombre especifico
+		return false;
+	}
 	public void InsertDataPersonaje(string _name,char _genus){
 		_query = "INSERT INTO Personaje (name,genus) VALUES('"+_name+"', '"+_genus+"')";
 		_command = _conexion.CreateCommand ();

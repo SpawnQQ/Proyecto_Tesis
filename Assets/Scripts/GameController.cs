@@ -24,13 +24,11 @@ public class GameController : MonoBehaviour {
 		hablaRaton = false;
 		secondsCounter=0;
 
-		//Creamos personaje
-		_connector=gameObject.AddComponent<DBConnector> ();
-		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
-		//_connector.InsertDataPersonaje ("nicolas",'M');
-		//_connector.ResetDataPersonaje ();
-		_connector.SelectDataPersonaje ();
-		_connector.CloseDB ();
+		//Eliminacion de datos en la base de datos
+//		_connector=gameObject.AddComponent<DBConnector> ();
+//		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
+//		_connector.ResetDataPersonaje ();
+//		_connector.CloseDB ();
 	}
 		
 	void Update () {
