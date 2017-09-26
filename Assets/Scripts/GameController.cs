@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class GameController : MonoBehaviour {
 
 	private DBConnector _connector;
 
+	MenuController menuController;
+
 	void Start () {
 		moving = false;
 		hablaRaton = false;
@@ -32,7 +35,12 @@ public class GameController : MonoBehaviour {
 	}
 		
 	void Update () {
-		movimientoRaton ();
+		if (Input.GetKey (KeyCode.Escape)) {
+			SceneManager.LoadScene ("Menu");
+		} else {
+			movimientoRaton ();
+		}
+
 	}
 
 	void movimientoRaton (){

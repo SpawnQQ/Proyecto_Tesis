@@ -64,8 +64,8 @@ public class DBConnector : MonoBehaviour {
 		//No encontro registro con el nombre especifico
 		return false;
 	}
-	public void InsertDataPersonaje(string _name,char _genus){
-		_query = "INSERT INTO Personaje (name,genus) VALUES('"+_name+"', '"+_genus+"')";
+	public void InsertDataPersonaje(string _name,string _type){
+		_query = "INSERT INTO Personaje (name,type) VALUES('"+_name+"', '"+_type+"')";
 		_command = _conexion.CreateCommand ();
 		_command.CommandText = _query;
 		_command.ExecuteNonQuery ();

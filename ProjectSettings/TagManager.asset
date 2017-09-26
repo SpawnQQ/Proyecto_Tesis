@@ -8,6 +8,8 @@ TagManager:
   - Objeto
   - Obstaculo
   - Texto_raton
+  - PnlCharacters
+  - PnlDataDB
   layers:
   - Default
   - TransparentFX
