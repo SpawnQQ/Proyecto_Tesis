@@ -21,8 +21,6 @@ public class DBAccess : MonoBehaviour {
 	private string _query;
 
 	void Awake(){
-		ratonFace = GetComponent<Sprite> ();
-		ratonaFace = GetComponent<Sprite> ();
 	}
 
 	void Start () {
@@ -46,27 +44,24 @@ public class DBAccess : MonoBehaviour {
 
 				Text _id=go.transform.GetChild(0).gameObject.GetComponent<Text>();
 				Text _name=go.transform.GetChild(1).gameObject.GetComponent<Text>();
-				//Image _type=go.transform.GetChild(1).gameObject.GetComponent<Image>();
+				Image _type=go.transform.GetChild(2).gameObject.GetComponent<Image>();
 
 				_id.text = _reader.GetValue (0).ToString ();
 				_name.text = _reader.GetValue (1).ToString ();
 
 				if (_reader.GetValue (2).ToString ().Equals ("Raton")) {
-					//_type.sprite = ratonFace;
+					_type.sprite = ratonFace;
 				} else if(_reader.GetValue (2).ToString ().Equals ("Ratona")) {
-					//_type.sprite = ratonaFace;
+					_type.sprite = ratonaFace;
 				}
 			}
 		}
 
-		CloseDB (_conexion,_command,_reader);
-	}
-
-	void CloseDB(SqliteConnection _conexion,SqliteCommand _command,SqliteDataReader _reader){
 		_reader.Close ();
 		_reader = null;
 		_command = null;
 		_conexion.Close ();
 		_conexion = null;
 	}
+
 }

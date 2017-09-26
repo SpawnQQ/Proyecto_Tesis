@@ -536,6 +536,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114568032826118790, guid: a02d5e57659598e4d959de9bda359f0f,
+        type: 2}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 114896673107484234, guid: c0dd697593a62804faea0bf42a7fb17a,
+        type: 2}
+    - target: {fileID: 114568032826118790, guid: a02d5e57659598e4d959de9bda359f0f,
+        type: 2}
+      propertyPath: botonMagico
+      value: 
+      objectReference: {fileID: 114896673107484234, guid: c0dd697593a62804faea0bf42a7fb17a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a02d5e57659598e4d959de9bda359f0f, type: 2}
   m_IsPrefabParent: 0

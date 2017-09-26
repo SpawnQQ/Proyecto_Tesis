@@ -1,10 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GlobalController : MonoBehaviour {
 
 	public static GlobalController globalController;
+
+	public void BtnLoadGame(){
+		Debug.Log (EventSystem.current.currentSelectedGameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text);
+		SceneManager.LoadScene ("GameScene");
+	}
 
 	void Awake(){
 		if(globalController==null){
