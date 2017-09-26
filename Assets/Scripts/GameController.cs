@@ -27,11 +27,7 @@ public class GameController : MonoBehaviour {
 		hablaRaton = false;
 		secondsCounter=0;
 
-		//Eliminacion de datos en la base de datos
-//		_connector=gameObject.AddComponent<DBConnector> ();
-//		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
-//		_connector.ResetDataPersonaje ();
-//		_connector.CloseDB ();
+		Debug.Log("Datos usuario: "+GlobalController.ID+", "+GlobalController.NAME+", "+GlobalController.TYPE);
 	}
 		
 	void Update () {

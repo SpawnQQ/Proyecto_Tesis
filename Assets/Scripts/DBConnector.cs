@@ -32,14 +32,16 @@ public class DBConnector : MonoBehaviour {
 	}
 
 	public int GetIdPersonaje(string _name){
-		_query = "SELECT * FROM Personaje WHERE name=" + _name;
+		_query = "SELECT * FROM Personaje";
 		_command = _conexion.CreateCommand ();
 		_command.CommandText = _query;
 		_reader = _command.ExecuteReader ();
 
 		if (_reader != null) {
 			while (_reader.Read ()) {
-				return _reader.GetInt32 (0);
+				if(_name.Equals(_reader.GetValue(1).ToString())){
+					return _reader.GetInt32 (0);
+				}
 			}
 		}
 

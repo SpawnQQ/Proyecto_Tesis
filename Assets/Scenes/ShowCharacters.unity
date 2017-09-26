@@ -440,7 +440,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1838912581}
   m_HandleRect: {fileID: 1838912580}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -750,8 +750,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneDataPref: {fileID: 1216236061542056, guid: c0dd697593a62804faea0bf42a7fb17a,
     type: 2}
-  ratonFace: {fileID: 21300000, guid: 43cdd4bc4b4b85543b2a0bdf44c0cd42, type: 3}
-  ratonaFace: {fileID: 21300000, guid: dd638f1a5e6e3ad4da24fa388dd1d581, type: 3}
+  ratonFace: {fileID: 21300000, guid: ef5254af96a152d439fbe5b4002dcb66, type: 3}
+  ratonaFace: {fileID: 21300000, guid: c1a0ac29cafc75845b85fc2071929ed2, type: 3}
 --- !u!1 &1153811174
 GameObject:
   m_ObjectHideFlags: 0

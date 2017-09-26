@@ -9,9 +9,25 @@ public class GlobalController : MonoBehaviour {
 
 	public static GlobalController globalController;
 
+	public static int ID;
+	public static string NAME;
+	public static string TYPE;
+
 	public void BtnLoadGame(){
-		Debug.Log (EventSystem.current.currentSelectedGameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text);
+		//Debug.Log ("Datos: "+EventSystem.current.currentSelectedGameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text+", "+EventSystem.current.currentSelectedGameObject.transform.GetChild(1).gameObject.GetComponent<Text>().text+", "+EventSystem.current.currentSelectedGameObject.transform.GetChild(2).gameObject.GetComponent<Image>().sprite.name);
+
+		ID =int.Parse (EventSystem.current.currentSelectedGameObject.transform.GetChild (0).gameObject.GetComponent<Text> ().text);
+		NAME = EventSystem.current.currentSelectedGameObject.transform.GetChild (1).gameObject.GetComponent<Text> ().text;
+		TYPE = EventSystem.current.currentSelectedGameObject.transform.GetChild (2).gameObject.GetComponent<Image> ().sprite.name;
+
 		SceneManager.LoadScene ("GameScene");
+	}
+
+	public static void NewGame(int _id,string _name, string _type){
+		//Debug.Log ("Datos creados: "+_id+", "+_name+", "+_type);
+		ID=_id;
+		NAME = _name;
+		TYPE = _type;
 	}
 
 	void Awake(){
