@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast (originPosition, mousePosition - originPosition,Vector2.Distance(originPosition,mousePosition));
 
 		Debug.DrawLine (originPosition, mousePosition, Color.green);
-		indicador.transform.position = mousePosition;
+		indicador.transform.position = new Vector2(mousePosition.x,mousePosition.y);
 
 		//Debug.Log (hit.collider.tag);
 		if (hit.collider != null) {
@@ -58,28 +58,36 @@ public class GameController : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0)) {
 
-			//Sacando un angulo
-			//Debug.Log (Mathf.Atan2 (mousePosition.y - originPosition.y,mousePosition.x - originPosition.x)*(180/Mathf.PI));
+			//Al mover, se modifica la posicion z del objeto raton e indicador
 
 			target = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 			if (hit.collider != null) {
-				if (hit.collider.CompareTag ("Obstaculo")) {
+
+				if (hit.collider.CompareTag ("Obstaculo") || hit.collider.CompareTag ("Objeto")) {
 
 					//Verificamos si el usuario clickea sobre el objeto, esto nos dira que es inaccesible
 					Collider2D checkHitPosition = Physics2D.OverlapPoint (mousePosition);
 
-					if (checkHitPosition != null) {
-						//NavMesh2D (originPosition,mousePosition,hit.point);
-						moving = false;
+					if (checkHitPosition!=null && hit.collider.CompareTag ("Obstaculo")) {
+						
+						moving = true;
+						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
+
 						Debug.Log ("Hey!, no llego a ese lugar");
 						textoRaton.text = "" + "Hey!, no llego a ese lugar";
 
 						//Aca decimos que comienza a contar el tiempo;
 						hablaRaton = true;
-					} else {
-						Debug.Log ("Hay un obstaculo");
-						moving = false;
-						//Reemplazar moving=false, por la funcion "NavMesh2D"
+					} else if(checkHitPosition!=null && hit.collider.CompareTag ("Objeto")){
+
+						//Aca interactuamos con el objeto al clickearlo
+						moving = true;
+						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
+
+					}else{
+						//Debug.Log ("Hay un obstaculo");
+						moving = true;
+						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
 					}
 
 				} else {
@@ -99,12 +107,33 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
+		Debug.Log (player.transform.name);
+
 		if(moving==true){
 			player.transform.position = Vector2.MoveTowards (originPosition,target,speed*Time.deltaTime);
 			if(Vector2.Distance(player.transform.position,target)<0.1f){
 				moving = false;
 			}
 		}
+	}
+
+	Vector2 Acercarse(Vector2 origin, Vector2 hitPoint){
+		Vector2 destiny;
+		float x, y;
+		if (origin.x > hitPoint.x) {
+			x = hitPoint.x + 1;
+		} else {
+			x = hitPoint.x - 1;
+		}
+
+		if (origin.y > hitPoint.y) {
+			y = hitPoint.y + 1;
+		} else {
+			y = hitPoint.y - 1;
+		}
+
+		destiny = new Vector2 (x,y);
+		return destiny;
 	}
 
 	//Pegado a la pared?
