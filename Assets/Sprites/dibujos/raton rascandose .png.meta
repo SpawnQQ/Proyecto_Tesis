@@ -1,9 +1,24 @@
 fileFormatVersion: 2
 guid: adeb20aca1411524ebc46a23b843fa11
-timeCreated: 1506482888
+timeCreated: 1506564143
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: raton rascandose _0
+    21300002: raton rascandose _1
+    21300004: raton rascandose _2
+    21300006: raton rascandose _3
+    21300008: raton rascandose _4
+    21300010: raton rascandose _5
+    21300012: raton rascandose _6
+    21300014: raton rascandose _7
+    21300016: raton rascandose _8
+    21300018: raton rascandose _9
+    21300020: raton rascandose _10
+    21300022: raton rascandose _11
+    21300024: raton rascandose _12
+    21300026: raton rascandose _13
+    21300028: raton rascandose _14
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -58,7 +73,7 @@ TextureImporter:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -66,7 +81,7 @@ TextureImporter:
   - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -74,7 +89,7 @@ TextureImporter:
   - buildTarget: iPhone
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +97,7 @@ TextureImporter:
   - buildTarget: tvOS
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -90,7 +105,7 @@ TextureImporter:
   - buildTarget: Android
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -98,7 +113,7 @@ TextureImporter:
   - buildTarget: Tizen
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +121,7 @@ TextureImporter:
   - buildTarget: Windows Store Apps
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -114,7 +129,7 @@ TextureImporter:
   - buildTarget: WebGL
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,14 +137,224 @@ TextureImporter:
   - buildTarget: Samsung TV
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: raton rascandose _0
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 1732
+        width: 315
+        height: 273
+      alignment: 9
+      pivot: {x: 0.70979476, y: 0.040345356}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _1
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1733
+        width: 325
+        height: 273
+      alignment: 9
+      pivot: {x: 0.69656193, y: 0.024207482}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _2
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 1733
+        width: 321
+        height: 276
+      alignment: 9
+      pivot: {x: 0.68528676, y: 0.007981895}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _3
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 1727
+        width: 374
+        height: 292
+      alignment: 9
+      pivot: {x: 0.70614904, y: 0.022632338}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _4
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 1418
+        width: 406
+        height: 289
+      alignment: 9
+      pivot: {x: 0.64106905, y: 0.0076228473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _5
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 1429
+        width: 393
+        height: 270
+      alignment: 9
+      pivot: {x: 0.5896835, y: 0.0081592705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _6
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 1410
+        width: 392
+        height: 268
+      alignment: 9
+      pivot: {x: 0.58991194, y: 0.008219705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _7
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1018
+        width: 393
+        height: 269
+      alignment: 9
+      pivot: {x: 0.5840782, y: 0.0081893755}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _8
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 1031
+        width: 407
+        height: 290
+      alignment: 9
+      pivot: {x: 0.62989765, y: -0.0151918605}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _9
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 1025
+        width: 375
+        height: 290
+      alignment: 9
+      pivot: {x: 0.6821019, y: 0.015192281}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _10
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 652
+        width: 320
+        height: 275
+      alignment: 9
+      pivot: {x: 0.6858652, y: -0.024030762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _11
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 650
+        width: 322
+        height: 276
+      alignment: 9
+      pivot: {x: 0.69155204, y: 0.015963126}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _12
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 642
+        width: 317
+        height: 275
+      alignment: 9
+      pivot: {x: 0.6945735, y: 0.024030983}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _13
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 287
+        width: 307
+        height: 265
+      alignment: 9
+      pivot: {x: 0.72243744, y: 0.033250686}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: raton rascandose _14
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 293
+        width: 315
+        height: 273
+      alignment: 9
+      pivot: {x: 0.6958087, y: 0.02420737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

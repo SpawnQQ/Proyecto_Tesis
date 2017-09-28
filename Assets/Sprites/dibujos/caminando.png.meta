@@ -1,9 +1,27 @@
 fileFormatVersion: 2
 guid: c13fa1c870b753d4780ac789b5128096
-timeCreated: 1506482892
+timeCreated: 1506564783
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: caminando_0
+    21300002: caminando_1
+    21300004: caminando_2
+    21300006: caminando_3
+    21300008: caminando_4
+    21300010: caminando_5
+    21300012: caminando_6
+    21300014: caminando_7
+    21300016: caminando_8
+    21300018: caminando_9
+    21300020: caminando_10
+    21300022: caminando_11
+    21300024: caminando_12
+    21300026: caminando_13
+    21300028: caminando_14
+    21300030: caminando_15
+    21300032: caminando_16
+    21300034: caminando_17
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,13 +57,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 256
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -58,14 +76,330 @@ TextureImporter:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: tvOS
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Tizen
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: caminando_0
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 1866
+        width: 291
+        height: 259
+      alignment: 9
+      pivot: {x: 0.5680564, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_1
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 1852
+        width: 351
+        height: 263
+      alignment: 9
+      pivot: {x: 0.5493703, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_2
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 1862
+        width: 360
+        height: 263
+      alignment: 9
+      pivot: {x: 0.60314804, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_3
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1477
+        width: 360
+        height: 262
+      alignment: 9
+      pivot: {x: 0.6031486, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_4
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 1481
+        width: 360
+        height: 261
+      alignment: 9
+      pivot: {x: 0.60314804, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_5
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 1468
+        width: 359
+        height: 261
+      alignment: 9
+      pivot: {x: 0.5896445, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1146
+        width: 358
+        height: 260
+      alignment: 9
+      pivot: {x: 0.5829796, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_7
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 1144
+        width: 360
+        height: 259
+      alignment: 9
+      pivot: {x: 0.61690146, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_8
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 1138
+        width: 358
+        height: 260
+      alignment: 9
+      pivot: {x: 0.60372496, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_9
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 802
+        width: 359
+        height: 262
+      alignment: 9
+      pivot: {x: 0.5965399, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_10
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 807
+        width: 360
+        height: 261
+      alignment: 9
+      pivot: {x: 0.61690134, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_11
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 810
+        width: 374
+        height: 254
+      alignment: 9
+      pivot: {x: 0.61914456, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_12
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 510
+        width: 373
+        height: 253
+      alignment: 9
+      pivot: {x: 0.6128272, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_13
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 519
+        width: 371
+        height: 255
+      alignment: 9
+      pivot: {x: 0.59341717, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_14
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 503
+        width: 372
+        height: 256
+      alignment: 9
+      pivot: {x: 0.58651143, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 198
+        width: 373
+        height: 255
+      alignment: 9
+      pivot: {x: 0.5929166, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_16
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 205
+        width: 373
+        height: 255
+      alignment: 9
+      pivot: {x: 0.5995532, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caminando_17
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 206
+        width: 372
+        height: 254
+      alignment: 9
+      pivot: {x: 0.61313033, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
