@@ -59,8 +59,10 @@ public class GameController : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 
 			//Al mover, se modifica la posicion z del objeto raton e indicador
-
 			target = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
+
+			rotarObjeto (player,originPosition.x,target.x);
+
 			if (hit.collider != null) {
 
 				if (hit.collider.CompareTag ("Obstaculo") || hit.collider.CompareTag ("Objeto")) {
@@ -69,7 +71,7 @@ public class GameController : MonoBehaviour {
 					Collider2D checkHitPosition = Physics2D.OverlapPoint (mousePosition);
 
 					if (checkHitPosition!=null && hit.collider.CompareTag ("Obstaculo")) {
-						
+
 						moving = true;
 						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
 
@@ -132,6 +134,14 @@ public class GameController : MonoBehaviour {
 
 		destiny = new Vector2 (x,y);
 		return destiny;
+	}
+
+	void rotarObjeto(GameObject objeto, float originPositionX, float targetPositionX){
+		if( targetPositionX < originPositionX){
+			objeto.transform.rotation = Quaternion.Euler(player.transform.rotation.x,180f,player.transform.rotation.z);
+		}else if(targetPositionX > originPositionX){
+			objeto.transform.rotation = Quaternion.Euler(player.transform.rotation.x,0f,player.transform.rotation.z);
+		}
 	}
 
 	//Pegado a la pared?
