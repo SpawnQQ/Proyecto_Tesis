@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class OnTrigger : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -16,13 +16,13 @@ public class OnTrigger : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 		if(col.gameObject.tag=="Objeto"){
-			Debug.Log ("Entro a: "+col.gameObject.name);
+			this.gameObject.GetComponent<SpriteRenderer> ().sortingLayerName = "Player";
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D col){
 		if(col.gameObject.tag=="Objeto"){
-			Debug.Log ("Salio de: "+col.gameObject.name);
+			this.gameObject.GetComponent<SpriteRenderer> ().sortingLayerName = "PrimerPlano";
 		}
 	} 
 }
