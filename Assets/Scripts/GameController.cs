@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 	public float speed;
 	public GameObject indicador;
 	public GameObject player;
+	public GameObject b;
 
 	bool moving;
 	Vector2 target;
@@ -17,7 +18,7 @@ public class GameController : MonoBehaviour {
 	float secondsCounter;
 	float tiempo_texto=3;
 	bool hablaRaton;
-
+	 
 	private DBConnector _connector;
 
 	MenuController menuController;
@@ -36,9 +37,8 @@ public class GameController : MonoBehaviour {
 		} else {
 			movimientoRaton ();
 		}
-
 	}
-
+		
 	void movimientoRaton (){
 		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 

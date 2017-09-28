@@ -240,6 +240,7 @@ MonoBehaviour:
   speed: 150
   indicador: {fileID: 616828748}
   player: {fileID: 1940168137}
+  b: {fileID: 1915315959}
   textoRaton: {fileID: 0}
 --- !u!1 &481711862
 GameObject:
@@ -334,8 +335,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 616828748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 0.05, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940168140}
   m_RootOrder: 0
@@ -381,7 +382,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
 --- !u!1 &665814085
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,8 +529,9 @@ GameObject:
   - component: {fileID: 1915315960}
   - component: {fileID: 1915315961}
   - component: {fileID: 1915315962}
-  - component: {fileID: 1915315963}
   - component: {fileID: 1915315964}
+  - component: {fileID: 1915315963}
+  - component: {fileID: 1915315965}
   m_Layer: 5
   m_Name: Basurero
   m_TagString: Objeto
@@ -626,7 +628,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1915315959}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -662,6 +664,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14.95, y: 12.6}
   m_EdgeRadius: 0
+--- !u!114 &1915315965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1915315959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a241a868ed23e4cac115ca9528b37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1940168137
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +686,9 @@ GameObject:
   - component: {fileID: 1940168139}
   - component: {fileID: 1940168138}
   - component: {fileID: 1940168141}
-  m_Layer: 0
+  - component: {fileID: 1940168142}
+  - component: {fileID: 1940168143}
+  m_Layer: 2
   m_Name: Personaje
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -694,7 +709,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -729,9 +744,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1380909657
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -1739065715
+  m_SortingLayer: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: adeb20aca1411524ebc46a23b843fa11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -773,6 +788,42 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!61 &1940168142
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940168137}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06369409, y: 0.051189438}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.70979476, y: 0.040345356}
+    oldSize: {x: 1.2304688, y: 1.0664062}
+    newSize: {x: 6.94, y: 6.7}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5115867, y: 0.188427}
+  m_EdgeRadius: 0
+--- !u!114 &1940168143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940168137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a241a868ed23e4cac115ca9528b37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1977234346
 GameObject:
   m_ObjectHideFlags: 0
