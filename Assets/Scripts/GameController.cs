@@ -107,8 +107,6 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
-		Debug.Log (player.transform.name);
-
 		if(moving==true){
 			player.transform.position = Vector2.MoveTowards (originPosition,target,speed*Time.deltaTime);
 			if(Vector2.Distance(player.transform.position,target)<0.1f){
