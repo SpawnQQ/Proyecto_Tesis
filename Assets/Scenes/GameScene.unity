@@ -237,10 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d091aeac6b60a2740b343800fd6f0a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: 120
   indicador: {fileID: 616828748}
   player: {fileID: 1940168137}
-  b: {fileID: 1915315959}
   textoRaton: {fileID: 0}
 --- !u!1 &481711862
 GameObject:
@@ -272,6 +271,7 @@ RectTransform:
   - {fileID: 1940168140}
   - {fileID: 1915315960}
   - {fileID: 1922653802}
+  - {fileID: 616828749}
   m_Father: {fileID: 665814089}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 616828749}
   - component: {fileID: 616828750}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Indicador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,12 +335,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 616828748}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 34, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
-  m_Father: {fileID: 1940168140}
-  m_RootOrder: 0
+  m_Father: {fileID: 481711863}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &616828750
 SpriteRenderer:
@@ -732,7 +732,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.296875, y: 2.9179688}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 5.296875, y: 2.9179688}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -777,7 +777,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.296875, y: 2.9179688}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -792,9 +792,9 @@ GameObject:
   - component: {fileID: 1940168140}
   - component: {fileID: 1940168139}
   - component: {fileID: 1940168138}
-  - component: {fileID: 1940168141}
   - component: {fileID: 1940168142}
   - component: {fileID: 1940168143}
+  - component: {fileID: 1940168141}
   m_Layer: 2
   m_Name: Personaje
   m_TagString: Player
@@ -873,28 +873,28 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 34, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
-  m_Children:
-  - {fileID: 616828749}
+  m_Children: []
   m_Father: {fileID: 481711863}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1940168141
-Animator:
-  serializedVersion: 3
+--- !u!111 &1940168141
+Animation:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1940168137}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 71d722b82b7dc33458b49bf89a2a6c41, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: cdc93c095ae5b8842abde33f649a1229, type: 2}
+  - {fileID: 7400000, guid: 01d75c213f0b0e84a928182727c503b5, type: 2}
+  - {fileID: 7400000, guid: 40d9e8eb96956fc4cb56b712118a1f65, type: 2}
+  - {fileID: 7400000, guid: 548e7b5a286dda04db134d12c1555ab3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!61 &1940168142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -910,7 +910,7 @@ BoxCollider2D:
   m_Offset: {x: -0.34245503, y: 0.03319855}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.70979476, y: 0.040345356}
+    pivot: {x: 0.69, y: 0.04}
     oldSize: {x: 1.2304688, y: 1.0664062}
     newSize: {x: 6.94, y: 6.7}
     adaptiveTilingThreshold: 0.5

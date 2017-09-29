@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: adeb20aca1411524ebc46a23b843fa11
-timeCreated: 1506564143
+timeCreated: 1506645951
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -154,7 +154,7 @@ TextureImporter:
         width: 315
         height: 273
       alignment: 9
-      pivot: {x: 0.70979476, y: 0.040345356}
+      pivot: {x: 0.69, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,7 +168,7 @@ TextureImporter:
         width: 325
         height: 273
       alignment: 9
-      pivot: {x: 0.69656193, y: 0.024207482}
+      pivot: {x: 0.68, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: raton rascandose _2
       rect:
         serializedVersion: 2
-        x: 803
+        x: 798
         y: 1733
         width: 321
         height: 276
       alignment: 9
-      pivot: {x: 0.68528676, y: 0.007981895}
+      pivot: {x: 0.7, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,7 +196,7 @@ TextureImporter:
         width: 374
         height: 292
       alignment: 9
-      pivot: {x: 0.70614904, y: 0.022632338}
+      pivot: {x: 0.68, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,7 +210,7 @@ TextureImporter:
         width: 406
         height: 289
       alignment: 9
-      pivot: {x: 0.64106905, y: 0.0076228473}
+      pivot: {x: 0.63, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,7 +224,7 @@ TextureImporter:
         width: 393
         height: 270
       alignment: 9
-      pivot: {x: 0.5896835, y: 0.0081592705}
+      pivot: {x: 0.57, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,7 +238,7 @@ TextureImporter:
         width: 392
         height: 268
       alignment: 9
-      pivot: {x: 0.58991194, y: 0.008219705}
+      pivot: {x: 0.57, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,7 +252,7 @@ TextureImporter:
         width: 393
         height: 269
       alignment: 9
-      pivot: {x: 0.5840782, y: 0.0081893755}
+      pivot: {x: 0.57, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -266,7 +266,7 @@ TextureImporter:
         width: 407
         height: 290
       alignment: 9
-      pivot: {x: 0.62989765, y: -0.0151918605}
+      pivot: {x: 0.63, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -280,7 +280,7 @@ TextureImporter:
         width: 375
         height: 290
       alignment: 9
-      pivot: {x: 0.6821019, y: 0.015192281}
+      pivot: {x: 0.68, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -289,12 +289,12 @@ TextureImporter:
       name: raton rascandose _10
       rect:
         serializedVersion: 2
-        x: 166
-        y: 652
+        x: 162
+        y: 646
         width: 320
         height: 275
       alignment: 9
-      pivot: {x: 0.6858652, y: -0.024030762}
+      pivot: {x: 0.69, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -308,7 +308,7 @@ TextureImporter:
         width: 322
         height: 276
       alignment: 9
-      pivot: {x: 0.69155204, y: 0.015963126}
+      pivot: {x: 0.68, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -322,7 +322,7 @@ TextureImporter:
         width: 317
         height: 275
       alignment: 9
-      pivot: {x: 0.6945735, y: 0.024030983}
+      pivot: {x: 0.7, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -336,7 +336,7 @@ TextureImporter:
         width: 307
         height: 265
       alignment: 9
-      pivot: {x: 0.72243744, y: 0.033250686}
+      pivot: {x: 0.71, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -350,7 +350,7 @@ TextureImporter:
         width: 315
         height: 273
       alignment: 9
-      pivot: {x: 0.6958087, y: 0.02420737}
+      pivot: {x: 0.69, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

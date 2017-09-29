@@ -9,12 +9,20 @@ public class GameController : MonoBehaviour {
 	public float speed;
 	public GameObject indicador;
 	public GameObject player;
-	public GameObject b;
+
+	private Animation animacion;
 
 	bool moving;
 	Vector2 target;
 	public Text textoRaton;
 
+//	public AnimationClip agacharse_raton;
+//	public AnimationClip pararse_raton;
+//	public AnimationClip caminar_raton;
+//	public AnimationClip rascandose_raton;
+//
+//	private Animation animacion;
+//
 	float secondsCounter;
 	float tiempo_texto=3;
 	bool hablaRaton;
@@ -29,9 +37,19 @@ public class GameController : MonoBehaviour {
 		secondsCounter=0;
 
 		Debug.Log("Datos usuario: "+GlobalController.ID+", "+GlobalController.NAME+", "+GlobalController.TYPE);
+
+		animacion = player.GetComponent<Animation> ();
+
+//		animacion = this.gameObject.AddComponent<Animation> ();
+//		animacion.AddClip (agacharse_raton,"agacharse");
+//		animacion.AddClip (pararse_raton,"pararse");
+//		animacion.AddClip (caminar_raton,"caminar");
+//		animacion.AddClip (rascandose_raton,"rascandose");
+
 	}
 		
 	void Update () {
+
 		if (Input.GetKey (KeyCode.Escape)) {
 			SceneManager.LoadScene ("Menu");
 		} else {
@@ -57,6 +75,8 @@ public class GameController : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonDown (0)) {
+
+		//	Debug.Log(animacion.GetClip("agacharse-raton"));
 
 			//Al mover, se modifica la posicion z del objeto raton e indicador
 			target = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
