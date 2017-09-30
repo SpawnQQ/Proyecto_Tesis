@@ -93,8 +93,16 @@ public class GameController : MonoBehaviour {
 					Collider2D checkHitPosition = Physics2D.OverlapPoint (mousePosition);
 
 					if (checkHitPosition!=null && hit.collider.CompareTag ("Obstaculo")) {
+						//Aca se esta clickeando encima de un obstaculo
 
-						moving = true;
+						//moving = true;
+						if (estaParado == true) {
+							StartCoroutine (comenzarCaminar ());
+							estaParado = false;
+						} else {
+							moving = true;
+						}
+
 						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
 
 						Debug.Log ("Hey!, no llego a ese lugar");
@@ -103,18 +111,37 @@ public class GameController : MonoBehaviour {
 						//Aca decimos que comienza a contar el tiempo;
 						hablaRaton = true;
 					} else if(checkHitPosition!=null && hit.collider.CompareTag ("Objeto")){
+						//Aca se esta clickeando encima de un objeto
 
 						//Aca interactuamos con el objeto al clickearlo
-						moving = true;
+						//moving = true;
+
+						//moving = true;
+						if (estaParado == true) {
+							StartCoroutine (comenzarCaminar ());
+							estaParado = false;
+						} else {
+							moving = true;
+						}
+
 						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
 
 					}else{
-						//Debug.Log ("Hay un obstaculo");
-						moving = true;
+						Debug.Log ("Hay un obstaculo");
+						//moving = true;
+						//moving = true;
+						if (estaParado == true) {
+							StartCoroutine (comenzarCaminar ());
+							estaParado = false;
+						} else {
+							moving = true;
+						}
 						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
 					}
 
 				} else {
+					//Colisiona con algo, pero no es ni obstaculo ni objeto
+
 					//moving = true;
 					if (estaParado == true) {
 						StartCoroutine (comenzarCaminar ());
@@ -125,6 +152,8 @@ public class GameController : MonoBehaviour {
 
 				}
 			} else {
+				//No esta colisionando con nada.
+
 				//moving = true;
 				if (estaParado == true) {
 					StartCoroutine (comenzarCaminar ());
