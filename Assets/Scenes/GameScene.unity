@@ -237,10 +237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d091aeac6b60a2740b343800fd6f0a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 120
+  speed: 135
   indicador: {fileID: 616828748}
   player: {fileID: 1940168137}
   textoRaton: {fileID: 0}
+  animacion: {fileID: 1940168144}
 --- !u!1 &481711862
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +795,7 @@ GameObject:
   - component: {fileID: 1940168138}
   - component: {fileID: 1940168142}
   - component: {fileID: 1940168143}
-  - component: {fileID: 1940168141}
+  - component: {fileID: 1940168144}
   m_Layer: 2
   m_Name: Personaje
   m_TagString: Player
@@ -877,24 +878,6 @@ Transform:
   m_Father: {fileID: 481711863}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &1940168141
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1940168137}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: cdc93c095ae5b8842abde33f649a1229, type: 2}
-  - {fileID: 7400000, guid: 01d75c213f0b0e84a928182727c503b5, type: 2}
-  - {fileID: 7400000, guid: 40d9e8eb96956fc4cb56b712118a1f65, type: 2}
-  - {fileID: 7400000, guid: 548e7b5a286dda04db134d12c1555ab3, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!61 &1940168142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -931,6 +914,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a241a868ed23e4cac115ca9528b37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1940168144
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940168137}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 537cf8fd7b867184a84d334b21c13ddb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1977234346
 GameObject:
   m_ObjectHideFlags: 0

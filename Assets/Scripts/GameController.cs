@@ -10,11 +10,11 @@ public class GameController : MonoBehaviour {
 	public GameObject indicador;
 	public GameObject player;
 
-	private Animation animacion;
-
 	bool moving;
 	Vector2 target;
 	public Text textoRaton;
+
+	public Animator animacion;
 
 //	public AnimationClip agacharse_raton;
 //	public AnimationClip pararse_raton;
@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour {
 	float secondsCounter;
 	float tiempo_texto=3;
 	bool hablaRaton;
+
+	bool estaParado=true;
 	 
 	private DBConnector _connector;
 
@@ -37,8 +39,6 @@ public class GameController : MonoBehaviour {
 		secondsCounter=0;
 
 		Debug.Log("Datos usuario: "+GlobalController.ID+", "+GlobalController.NAME+", "+GlobalController.TYPE);
-
-		animacion = player.GetComponent<Animation> ();
 
 //		animacion = this.gameObject.AddComponent<Animation> ();
 //		animacion.AddClip (agacharse_raton,"agacharse");
@@ -75,6 +75,8 @@ public class GameController : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonDown (0)) {
+
+			animacion.SetBool ("caminar",true);
 
 		//	Debug.Log(animacion.GetClip("agacharse-raton"));
 
@@ -113,10 +115,23 @@ public class GameController : MonoBehaviour {
 					}
 
 				} else {
-					moving = true;
+					//moving = true;
+					if (estaParado == true) {
+						StartCoroutine (comenzarCaminar ());
+						estaParado = false;
+					} else {
+						moving = true;
+					}
+
 				}
 			} else {
-				moving = true;
+				//moving = true;
+				if (estaParado == true) {
+					StartCoroutine (comenzarCaminar ());
+					estaParado = false;
+				} else {
+					moving = true;
+				}
 			}
 		}
 
@@ -132,7 +147,10 @@ public class GameController : MonoBehaviour {
 		if(moving==true){
 			player.transform.position = Vector2.MoveTowards (originPosition,target,speed*Time.deltaTime);
 			if(Vector2.Distance(player.transform.position,target)<0.1f){
-				moving = false;
+				animacion.SetBool ("caminar",false);
+				//StartCoroutine (terminarCaminar ());
+				moving=false;
+				estaParado = true;
 			}
 		}
 	}
@@ -162,6 +180,12 @@ public class GameController : MonoBehaviour {
 		}else if(targetPositionX > originPositionX){
 			objeto.transform.rotation = Quaternion.Euler(player.transform.rotation.x,0f,player.transform.rotation.z);
 		}
+	}
+
+	IEnumerator comenzarCaminar (){
+		moving = false;
+		yield return new WaitForSeconds(0.5f);
+		moving = true;
 	}
 
 	//Pegado a la pared?
