@@ -203,6 +203,10 @@ public class GameController : MonoBehaviour {
 		return destiny;
 	}
 
+	void navegador(){
+		
+	}
+
 	void rotarObjeto(GameObject objeto, float originPositionX, float targetPositionX){
 		if( targetPositionX < originPositionX){
 			objeto.transform.rotation = Quaternion.Euler(player.transform.rotation.x,180f,player.transform.rotation.z);

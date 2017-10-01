@@ -10,6 +10,7 @@ TagManager:
   - Texto_raton
   - PnlCharacters
   - PnlDataDB
+  - ImagenSeleccionSC
   layers:
   - Default
   - TransparentFX

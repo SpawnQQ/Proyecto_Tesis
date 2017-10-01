@@ -11,6 +11,7 @@ public class MenuController : MonoBehaviour {
 	public Dropdown inputGenero;
 	private DBConnector _connector;
 
+
 	public void MenuManager(string pNameScene){
 		SceneManager.LoadScene (pNameScene);
 	}
