@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\DBConnector.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GlobalController.cs" />
+     <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\OnTrigger.cs" />
      <Compile Include="Assets\Scripts\TileMap.cs" />

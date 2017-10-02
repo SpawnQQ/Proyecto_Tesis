@@ -42,12 +42,30 @@ public class MenuController : MonoBehaviour {
 				_id=_connector.GetIdPersonaje (inputNombre.text);
 				_connector.CloseDB ();
 
+				//Asignamos el objeto queso al crear un personaje
+				CrearObjeto("Queso","Queso apestoso",1,_id);
+
 				GlobalController.NewGame (_id,inputNombre.text,inputGenero.captionText.text);
 
 				//Guardamos los datos en la base de datos y entramos al juego
 				SceneManager.LoadScene ("GameScene");	
 			}
 		}
+
+	}
+
+	public void CrearObjeto(string _name, string _description, int _lot,int _id_personaje){
+		_connector=gameObject.AddComponent<DBConnector> ();
+		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
+		_connector.InsertDataObjeto (_name,_description,_lot,_id_personaje);
+		_connector.CloseWriteDB ();
+	}
+
+	public void BorrarPersonajes(){
+		_connector=gameObject.AddComponent<DBConnector> ();
+		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
+		_connector.ResetDataPersonaje ();
+		_connector.CloseWriteDB ();
 
 	}
 

@@ -52,7 +52,10 @@ public class GameController : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.Escape)) {
 			SceneManager.LoadScene ("Menu");
-		} else {
+		} else if (Input.GetKey (KeyCode.I)) {
+			SceneManager.LoadScene ("Inventario");
+
+		}else {
 			movimientoRaton ();
 		}
 	}

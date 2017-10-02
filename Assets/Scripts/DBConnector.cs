@@ -111,4 +111,10 @@ public class DBConnector : MonoBehaviour {
 		_conexion.Close ();
 		_conexion = null;
 	}
+
+	public void CloseWriteDB(){
+		_command = null;
+		_conexion.Close ();
+		_conexion = null;
+	}
 }

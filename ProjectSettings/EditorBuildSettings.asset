@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShowCharacters.unity
     guid: 93883a7b919522042887e2b41da4d62d
+  - enabled: 1
+    path: Assets/Scenes/Inventario.unity
+    guid: c278dec24d2fb1346ac2bbc70ed2cef4

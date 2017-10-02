@@ -60,3 +60,6 @@ TagManager:
   - name: PrimerPlano
     uniqueID: 2555901581
     locked: 0
+  - name: Inventario
+    uniqueID: 227336271
+    locked: 0
