@@ -63,7 +63,7 @@
      <Compile Include="Assets\Scripts\TileMap.cs" />
      <Compile Include="Assets\Scripts\TileType.cs" />
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>C:/Users/Nicolas/Documents/Proyecto_Tesis/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>C:/Users/nicka/Documents/Proyecto_Tesis/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -87,10 +87,10 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.Sqlite">
- <HintPath>C:/Users/Nicolas/Documents/Proyecto_Tesis/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ <HintPath>C:/Users/nicka/Documents/Proyecto_Tesis/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
  <Reference Include="System.Data">
- <HintPath>C:/Users/Nicolas/Documents/Proyecto_Tesis/Assets/Plugins/System.Data.dll</HintPath>
+ <HintPath>C:/Users/nicka/Documents/Proyecto_Tesis/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

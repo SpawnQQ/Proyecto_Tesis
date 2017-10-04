@@ -30,6 +30,54 @@ public class GlobalController : MonoBehaviour {
 		TYPE = _type;
 	}
 
+	public static void NavMesh(GameObject raton, Vector2 origin, Vector2 final, Vector2 hit){
+
+		string dirX,dirY;
+
+		if (origin.x > final.x) {
+			if(origin.y > final.y){
+				//Izquierda - Abajo
+				dirX="Izquierda";
+				dirY="Abajo";
+			}else if(origin.y < final.y){
+				//Izquierda - Arriba
+				dirX="Izquierda";
+				dirY="Arriba";
+			}else if(origin.y==final.y){
+				//Izquierda - Random
+				dirX="Izquierda";
+				dirY="Arriba";
+			}
+		} else if(origin.x < final.x){
+			if(origin.y > final.y){
+				//Derecha - Abajo
+				dirX="Derecha";
+				dirY="Abajo";
+			}else if(origin.y < final.y){
+				//Derecha - Arriba
+				dirX="Derecha";
+				dirY="Arriba";
+			}else if(origin.y==final.y){
+				//Derecha - Random
+				dirX="Derecha";
+				dirY="Arriba";
+			}
+		}else if(origin.x == final.x){
+			if(origin.y > final.y){
+				//Random - Abajo
+				dirX="Derecha";
+				dirY="Abajo";
+			}else if(origin.y < final.y){
+				//Random - Arriba
+				dirX="Derecha";
+				dirY="Arriba";
+			}else if(origin.y==final.y){
+				//Random - Random
+				//Nunca sucedera!
+			}
+		}	
+	}
+
 	void Awake(){
 		if(globalController==null){
 			globalController = this;

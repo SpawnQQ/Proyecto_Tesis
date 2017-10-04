@@ -11,9 +11,18 @@ public class MicrophoneInput : MonoBehaviour {
 	Dictionary<string,System.Action> keywords=new Dictionary<string,System.Action>();
 
 	void Start() {        
-		keywords.Add ("go", () => {
-			GoCalled();		
+		keywords.Add ("Abrir", () => {
+			Abrir();		
 		});
+
+		keywords.Add ("Coger", () => {
+			Coger();		
+		});
+
+		keywords.Add ("Mira", () => {
+			Coger();		
+		});
+
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
 		keywordRecognizer.OnPhraseRecognized += KeywordRecognizerOnPhraseRecognized;
 		keywordRecognizer.Start ();
@@ -27,9 +36,15 @@ public class MicrophoneInput : MonoBehaviour {
 		}
 	}
 
-	void GoCalled(){
-		print ("Holi");
+	void Abrir(){
+		print ("Abrir");
 	}
+
+	void Coger(){
+		print ("Coger");
+	}
+
+
 	void Update(){    
 	
 	}    
