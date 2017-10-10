@@ -20,7 +20,7 @@ public class MicrophoneInput : MonoBehaviour {
 		});
 
 		keywords.Add ("Mira", () => {
-			Coger();		
+			Mirar();		
 		});
 
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
@@ -44,6 +44,9 @@ public class MicrophoneInput : MonoBehaviour {
 		print ("Coger");
 	}
 
+	void Mirar(){
+		print ("Mirar");
+	}
 
 	void Update(){    
 	

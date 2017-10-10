@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
 
 	bool moving;
 	Vector2 target;
+	Vector2 final;
 	public Text textoRaton;
 
 	public Animator animacion;
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour {
 	bool hablaRaton;
 
 	bool estaParado=true;
+	bool navMesh=false;
 	 
 	private DBConnector _connector;
 
@@ -78,6 +80,8 @@ public class GameController : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonDown (0)) {
+
+			Debug.Log (mousePosition);
 
 			animacion.SetBool ("caminar",true);
 
@@ -139,6 +143,12 @@ public class GameController : MonoBehaviour {
 						} else {
 							moving = true;
 						}
+
+						//Aca decimos que hay un obstaculo, por lo que se generara un camino a reccorrer.
+
+						final = new Vector2 (target.x,target.y);
+						navMesh = true;
+
 						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
 					}
 
@@ -183,6 +193,12 @@ public class GameController : MonoBehaviour {
 				//StartCoroutine (terminarCaminar ());
 				moving=false;
 				estaParado = true;
+
+				if(navMesh==true){
+					Debug.Log ("Punto en colision: "+target);
+					NavMesh (originPosition,final,target);
+				}
+				navMesh = false;
 			}
 		}
 	}
@@ -206,8 +222,117 @@ public class GameController : MonoBehaviour {
 		return destiny;
 	}
 
-	void navegador(){
-		
+	string direccionX( Vector2 origin, Vector2 final){
+		if (origin.x <= final.x) {
+			return "Derecha";
+		} else {
+			return "Izquierda";
+		}
+	}
+
+	string direccionY( Vector2 origin, Vector2 final){
+		if (origin.y <= final.y) {
+			return "Arriba";
+		} else {
+			return "Abajo";
+		}
+	}
+
+
+	void NavMesh(Vector2 origin, Vector2 final, Vector2 hit){
+		string dirX=direccionX (origin,final) ,dirY=direccionY (origin,final);
+		float horizontal=hit.x, vertical=hit.y;
+
+		if (dirX.Equals ("Derecha")) {
+			if (dirY.Equals ("Arriba")) {
+				
+				//Derecha Arriba-------------------------------------------------------------------
+				if (Physics2D.OverlapPoint (new Vector2(horizontal+2,vertical))!=null) {
+					do{
+						vertical++;
+
+					//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
+					}while(Physics2D.OverlapPoint (new Vector2(horizontal+2,vertical))!=null);
+					horizontal++;
+				} else{
+
+					//Colisionamos hacia arriba, por lo que avanzamos a la derecha
+					do{
+						horizontal++;
+
+						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
+					}while(Physics2D.OverlapPoint (new Vector2(horizontal,vertical+2))!=null);
+					vertical++;
+				}
+
+			} else {
+				//Derecha Abajo---------------------------------------------------------------------
+				//Preguntamos si a la derecha colisionamos
+				if (Physics2D.OverlapPoint (new Vector2(horizontal+2,vertical))!=null) {
+					do{
+						vertical--;
+
+						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
+					}while(Physics2D.OverlapPoint (new Vector2(horizontal+2,vertical))!=null);
+					horizontal++;
+				} else{
+
+					//Colisionamos hacia arriba, por lo que avanzamos a la derecha
+					do{
+						horizontal++;
+
+						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
+					}while(Physics2D.OverlapPoint (new Vector2(horizontal,vertical-2))!=null);
+					vertical--;
+				}
+			}
+		} else {
+			//Izquierda
+			if (dirY.Equals ("Arriba")) {
+
+				//Izquierda Arriba----------------------------------------------------------------
+				if (Physics2D.OverlapPoint (new Vector2(horizontal-2,vertical))!=null) {
+					do{
+						vertical++;
+
+						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
+					}while(Physics2D.OverlapPoint (new Vector2(horizontal-2,vertical))!=null);
+					horizontal--;
+				} else{
+
+					//Colisionamos hacia arriba, por lo que avanzamos a la derecha
+					do{
+						horizontal--;
+
+						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
+					}while(Physics2D.OverlapPoint (new Vector2(horizontal,vertical+2))!=null);
+					vertical++;
+				}
+
+			} else {
+				//Izquierda Abajo-----------------------------------------------------------------
+				if (Physics2D.OverlapPoint (new Vector2(horizontal-2,vertical))!=null) {
+					do{
+						vertical--;
+
+						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
+					}while(Physics2D.OverlapPoint (new Vector2(horizontal-2,vertical))!=null);
+					horizontal--;
+				} else{
+
+					//Colisionamos hacia arriba, por lo que avanzamos a la derecha
+					do{
+						horizontal--;
+
+						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
+					}while(Physics2D.OverlapPoint (new Vector2(horizontal,vertical-2))!=null);
+					vertical--;
+				}
+
+			}
+		}
+		Debug.Log ("Posicion: "+ dirX+" "+dirY);
+		Debug.Log ("Horizontal: "+horizontal+"Vertical: "+vertical);
 	}
 
 	void rotarObjeto(GameObject objeto, float originPositionX, float targetPositionX){
