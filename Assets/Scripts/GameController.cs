@@ -81,8 +81,6 @@ public class GameController : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0)) {
 
-			Debug.Log (mousePosition);
-
 			animacion.SetBool ("caminar",true);
 
 		//	Debug.Log(animacion.GetClip("agacharse-raton"));
@@ -186,21 +184,20 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
-		if(moving==true){
-			player.transform.position = Vector2.MoveTowards (originPosition,target,speed*Time.deltaTime);
-			if(Vector2.Distance(player.transform.position,target)<0.1f){
-				animacion.SetBool ("caminar",false);
+		if (moving == true) {
+			player.transform.position = Vector2.MoveTowards (originPosition, target, speed * Time.deltaTime);
+			if (Vector2.Distance (player.transform.position, target) < 0.1f) {
+				animacion.SetBool ("caminar", false);
 				//StartCoroutine (terminarCaminar ());
-				moving=false;
+				moving = false;
 				estaParado = true;
 
-				if(navMesh==true){
-					Debug.Log ("Punto en colision: "+target);
-					NavMesh (originPosition,final,target);
+				if (navMesh == true) {
+					//NavMesh (originPosition, final, target);
 				}
 				navMesh = false;
 			}
-		}
+		} 
 	}
 
 	Vector2 Acercarse(Vector2 origin, Vector2 hitPoint){
@@ -239,7 +236,7 @@ public class GameController : MonoBehaviour {
 	}
 
 
-	void NavMesh(Vector2 origin, Vector2 final, Vector2 hit){
+	Vector2 NavMesh(Vector2 origin, Vector2 final, Vector2 hit){
 		string dirX=direccionX (origin,final) ,dirY=direccionY (origin,final);
 		float horizontal=hit.x, vertical=hit.y;
 
@@ -253,7 +250,7 @@ public class GameController : MonoBehaviour {
 
 					//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal+2,vertical))!=null);
-					horizontal++;
+					horizontal=horizontal+2;
 				} else{
 
 					//Colisionamos hacia arriba, por lo que avanzamos a la derecha
@@ -262,7 +259,7 @@ public class GameController : MonoBehaviour {
 
 						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal,vertical+2))!=null);
-					vertical++;
+					vertical=vertical+2;
 				}
 
 			} else {
@@ -274,7 +271,7 @@ public class GameController : MonoBehaviour {
 
 						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal+2,vertical))!=null);
-					horizontal++;
+					horizontal=horizontal+2;
 				} else{
 
 					//Colisionamos hacia arriba, por lo que avanzamos a la derecha
@@ -283,7 +280,7 @@ public class GameController : MonoBehaviour {
 
 						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal,vertical-2))!=null);
-					vertical--;
+					vertical=vertical-2;
 				}
 			}
 		} else {
@@ -297,7 +294,7 @@ public class GameController : MonoBehaviour {
 
 						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal-2,vertical))!=null);
-					horizontal--;
+					horizontal=horizontal-2;
 				} else{
 
 					//Colisionamos hacia arriba, por lo que avanzamos a la derecha
@@ -306,7 +303,7 @@ public class GameController : MonoBehaviour {
 
 						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal,vertical+2))!=null);
-					vertical++;
+					vertical=vertical+2;
 				}
 
 			} else {
@@ -317,7 +314,7 @@ public class GameController : MonoBehaviour {
 
 						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal-2,vertical))!=null);
-					horizontal--;
+					horizontal=horizontal-2;
 				} else{
 
 					//Colisionamos hacia arriba, por lo que avanzamos a la derecha
@@ -326,13 +323,14 @@ public class GameController : MonoBehaviour {
 
 						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal,vertical-2))!=null);
-					vertical--;
+					vertical=vertical-2;
 				}
 
 			}
 		}
-		Debug.Log ("Posicion: "+ dirX+" "+dirY);
-		Debug.Log ("Horizontal: "+horizontal+"Vertical: "+vertical);
+
+		Vector2 vector=new Vector2 (horizontal,vertical);
+		return vector;
 	}
 
 	void rotarObjeto(GameObject objeto, float originPositionX, float targetPositionX){
