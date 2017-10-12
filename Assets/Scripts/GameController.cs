@@ -60,6 +60,7 @@ public class GameController : MonoBehaviour {
 		}else {
 			movimientoRaton ();
 		}
+			
 	}
 		
 	void movimientoRaton (){
@@ -193,11 +194,18 @@ public class GameController : MonoBehaviour {
 				estaParado = true;
 
 				if (navMesh == true) {
-					//NavMesh (originPosition, final, target);
+					RaycastHit2D hitVerificador = Physics2D.Raycast (new Vector2 (player.transform.position.x,player.transform.position.y), final - new Vector2(player.transform.position.x,player.transform.position.y), Vector2.Distance (new Vector2(player.transform.position.x,player.transform.position.y), final));
+					if (hitVerificador.collider != null) {
+						target = new Vector2 (NavMesh (originPosition, final, target).x, NavMesh (originPosition, final, target).y);
+						moving = true;
+					} else {
+						target = new Vector2 (final.x, final.y);
+						moving = true;
+						navMesh = false;
+					}
 				}
-				navMesh = false;
 			}
-		} 
+		}
 	}
 
 	Vector2 Acercarse(Vector2 origin, Vector2 hitPoint){
