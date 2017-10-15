@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 
 	public float speed;
 	public GameObject indicador;
+	public GameObject indicadorClick;
 	public GameObject player;
 
 	bool moving;
@@ -73,18 +74,60 @@ public class GameController : MonoBehaviour {
 		Debug.DrawLine (originPosition, mousePosition, Color.green);
 		indicador.transform.position = new Vector2(mousePosition.x,mousePosition.y);
 
-		//Debug.Log (hit.collider.tag);
 		if (hit.collider != null) {
 			Debug.DrawLine (hit.point,mousePosition , Color.red);
 			Debug.DrawLine (originPosition, hit.point, Color.green);
-
 		}
 
+//		if(GlobalController.onTriggerObjeto==true){
+//
+//			animacion.SetBool ("caminar",true);
+//			target = new Vector2 (GlobalController.pObjetoX, GlobalController.pObjetoY);
+//			rotarObjeto (player,originPosition.x,target.x);
+//
+//			RaycastHit2D hitSobreObjeto = Physics2D.Raycast (originPosition, target - originPosition,Vector2.Distance(originPosition,target));
+//
+//			if (hitSobreObjeto.collider != null) {
+//				Debug.Log ("Hay un obstaculo");
+//				if (estaParado == true) {
+//					StartCoroutine (comenzarCaminar ());
+//					estaParado = false;
+//				} else {
+//					moving = true;
+//				}
+//				final = new Vector2 (target.x,target.y);
+//				navMesh = true;
+//				target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
+//			} else {
+//				if (estaParado == true) {
+//					StartCoroutine (comenzarCaminar ());
+//					estaParado = false;
+//				} else {
+//					moving = true;
+//				}
+//			}
+//		}
+
+
+//		else if(GlobalController.onTriggerObjeto==true){
+//			//Aca clickeamos sobre el objeto en un trigger.
+//
+//			if (estaParado == true) {
+//				StartCoroutine (comenzarCaminar ());
+//				estaParado = false;
+//			} else {
+//				moving = true;
+//			}
+//			target = new Vector2 (GlobalController.pObjetoX, GlobalController.pObjetoY);
+//
+//		}
+//
 		if (Input.GetMouseButtonDown (0)) {
+			Debug.Log ("No deberia entrar");
+
+			Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
 
 			animacion.SetBool ("caminar",true);
-
-		//	Debug.Log(animacion.GetClip("agacharse-raton"));
 
 			//Al mover, se modifica la posicion z del objeto raton e indicador
 			target = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
@@ -98,7 +141,7 @@ public class GameController : MonoBehaviour {
 					//Verificamos si el usuario clickea sobre el objeto, esto nos dira que es inaccesible
 					Collider2D checkHitPosition = Physics2D.OverlapPoint (mousePosition);
 
-					if (checkHitPosition!=null && hit.collider.CompareTag ("Obstaculo")) {
+					if (checkHitPosition != null && hit.collider.CompareTag ("Obstaculo")) {
 						//Aca se esta clickeando encima de un obstaculo
 
 						//moving = true;
@@ -109,20 +152,16 @@ public class GameController : MonoBehaviour {
 							moving = true;
 						}
 
-						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
+						target = new Vector2 (Acercarse (originPosition, hit.point).x, Acercarse (originPosition, hit.point).y);
 
 						Debug.Log ("Hey!, no llego a ese lugar");
 						textoRaton.text = "" + "Hey!, no llego a ese lugar";
 
 						//Aca decimos que comienza a contar el tiempo;
 						hablaRaton = true;
-					} else if(checkHitPosition!=null && hit.collider.CompareTag ("Objeto")){
+					} else if (checkHitPosition != null && checkHitPosition.CompareTag ("Objeto")) {
 						//Aca se esta clickeando encima de un objeto
 
-						//Aca interactuamos con el objeto al clickearlo
-						//moving = true;
-
-						//moving = true;
 						if (estaParado == true) {
 							StartCoroutine (comenzarCaminar ());
 							estaParado = false;
@@ -130,12 +169,11 @@ public class GameController : MonoBehaviour {
 							moving = true;
 						}
 
-						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
+						target = new Vector2 (Acercarse (originPosition, hit.point).x, Acercarse (originPosition, hit.point).y);
 
-					}else{
+					} else {
 						Debug.Log ("Hay un obstaculo");
-						//moving = true;
-						//moving = true;
+
 						if (estaParado == true) {
 							StartCoroutine (comenzarCaminar ());
 							estaParado = false;
@@ -145,10 +183,10 @@ public class GameController : MonoBehaviour {
 
 						//Aca decimos que hay un obstaculo, por lo que se generara un camino a reccorrer.
 
-						final = new Vector2 (target.x,target.y);
+						final = new Vector2 (target.x, target.y);
 						navMesh = true;
 
-						target = new Vector2 (Acercarse(originPosition,hit.point).x,Acercarse(originPosition,hit.point).y);
+						target = new Vector2 (Acercarse (originPosition, hit.point).x, Acercarse (originPosition, hit.point).y);
 					}
 
 				} else {
@@ -161,12 +199,10 @@ public class GameController : MonoBehaviour {
 					} else {
 						moving = true;
 					}
-
 				}
-			} else {
+			}else {
 				//No esta colisionando con nada.
 
-				//moving = true;
 				if (estaParado == true) {
 					StartCoroutine (comenzarCaminar ());
 					estaParado = false;
@@ -174,6 +210,8 @@ public class GameController : MonoBehaviour {
 					moving = true;
 				}
 			}
+			indicadorClick.transform.position = new Vector2 (mousePosition.x,mousePosition.y);
+			StartCoroutine (IndicadorClick(respaldoPosicion));
 		}
 
 		if(hablaRaton==true){
@@ -188,21 +226,29 @@ public class GameController : MonoBehaviour {
 		if (moving == true) {
 			player.transform.position = Vector2.MoveTowards (originPosition, target, speed * Time.deltaTime);
 			if (Vector2.Distance (player.transform.position, target) < 0.1f) {
-				animacion.SetBool ("caminar", false);
-				//StartCoroutine (terminarCaminar ());
 				moving = false;
-				estaParado = true;
+				GlobalController.onTriggerObjeto = false;
 
-				if (navMesh == true) {
-					RaycastHit2D hitVerificador = Physics2D.Raycast (new Vector2 (player.transform.position.x,player.transform.position.y), final - new Vector2(player.transform.position.x,player.transform.position.y), Vector2.Distance (new Vector2(player.transform.position.x,player.transform.position.y), final));
+				if (navMesh == true && (player.transform.position.x!=GlobalController.pObjetoX && player.transform.position.y!=GlobalController.pObjetoY)) {
+					RaycastHit2D hitVerificador = Physics2D.Raycast (new Vector2 (player.transform.position.x, player.transform.position.y), final - new Vector2 (player.transform.position.x, player.transform.position.y), Vector2.Distance (new Vector2 (player.transform.position.x, player.transform.position.y), final));
 					if (hitVerificador.collider != null) {
-						target = new Vector2 (NavMesh (originPosition, final, target).x, NavMesh (originPosition, final, target).y);
-						moving = true;
+						if (Vector2.Distance (player.transform.position, hitVerificador.point) > Mathf.Sqrt (2)) {
+							target = new Vector2 (Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).x, Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).y);
+							moving = true;
+						} else {
+							target = new Vector2 (NavMesh (originPosition, final, target).x, NavMesh (originPosition, final, target).y);
+							moving = true;
+						}
 					} else {
 						target = new Vector2 (final.x, final.y);
 						moving = true;
 						navMesh = false;
 					}
+				} else {
+					animacion.SetBool ("caminar", false);
+					moving = false;
+					estaParado = true;
+
 				}
 			}
 		}
@@ -242,7 +288,7 @@ public class GameController : MonoBehaviour {
 			return "Abajo";
 		}
 	}
-
+		
 
 	Vector2 NavMesh(Vector2 origin, Vector2 final, Vector2 hit){
 		string dirX=direccionX (origin,final) ,dirY=direccionY (origin,final);
@@ -299,7 +345,6 @@ public class GameController : MonoBehaviour {
 				if (Physics2D.OverlapPoint (new Vector2(horizontal-2,vertical))!=null) {
 					do{
 						vertical++;
-
 						//Mientras colisionemos a la derecha, seguimos avanzando hacia arriba
 					}while(Physics2D.OverlapPoint (new Vector2(horizontal-2,vertical))!=null);
 					horizontal=horizontal-2;
@@ -355,23 +400,8 @@ public class GameController : MonoBehaviour {
 		moving = true;
 	}
 
-	//Pegado a la pared?
-	void NavMesh2D(Vector2 originPosition,Vector2 mousePosition, Vector2 hitPoint){
-		//RaycastHit2D hit = Physics2D.Raycast (originPosition, mousePosition - originPosition,Vector2.Distance(originPosition,mousePosition));
-//		float angulo=Mathf.Atan2 (mousePosition.y - originPosition.y,mousePosition.x - originPosition.x)*(180/Mathf.PI);
-//		for(int i=1;i<5;i++){
-//			if (((angulo <= 45 && angulo >= 0) || (angulo >= -45 && angulo <= 0)) || ((angulo >= 135 && angulo <= 180) || (angulo <= -135 && angulo >= -180))) {
-//				//Derecha e izquierda
-//				Debug.DrawLine (originPosition,new Vector2( hit.point.x,hit.point.y-i), Color.magenta);
-//				Debug.DrawLine (originPosition,new Vector2( hit.point.x,hit.point.y+i), Color.cyan);
-//			} else {
-//				if ((angulo > 45 && angulo < 135) || (angulo < -45 && angulo > -135)) {
-//					//Arriba y abajo
-//					Debug.DrawLine (originPosition,new Vector2( hit.point.x-i,hit.point.y), Color.magenta);
-//					Debug.DrawLine (originPosition,new Vector2( hit.point.x+i,hit.point.y), Color.cyan);
-//				}
-//			}
-//
-//		}
+	IEnumerator IndicadorClick(Vector2 respaldoPosicion){
+		yield return new WaitForSeconds(0.00000000000000000000000001f);
+		indicadorClick.transform.position = new Vector2 (respaldoPosicion.x,respaldoPosicion.y);
 	}
 }

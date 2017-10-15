@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\MicrophoneInput.cs" />
      <Compile Include="Assets\Scripts\OnTrigger.cs" />
+     <Compile Include="Assets\Scripts\OnTriggerBasurero.cs" />
      <Compile Include="Assets\Scripts\TileMap.cs" />
      <Compile Include="Assets\Scripts\TileType.cs" />
  <Reference Include="Facebook.Unity.Settings">

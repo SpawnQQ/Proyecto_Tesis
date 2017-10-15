@@ -13,6 +13,11 @@ public class GlobalController : MonoBehaviour {
 	public static string NAME;
 	public static string TYPE;
 
+	public static float pObjetoX;
+	public static float pObjetoY;
+
+	public static bool onTriggerObjeto=false;
+
 	public void BtnLoadGame(){
 		//Debug.Log ("Datos: "+EventSystem.current.currentSelectedGameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text+", "+EventSystem.current.currentSelectedGameObject.transform.GetChild(1).gameObject.GetComponent<Text>().text+", "+EventSystem.current.currentSelectedGameObject.transform.GetChild(2).gameObject.GetComponent<Image>().sprite.name);
 
