@@ -65,11 +65,14 @@ public class GameController : MonoBehaviour {
 			
 	}
 
+	void acciones(){
+		
+	}
+
 	void movimientoAccion(){
 		Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
 		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
-		RaycastHit2D hit = Physics2D.Raycast (originPosition, mousePosition - originPosition,Vector2.Distance(originPosition,mousePosition));
 
 		if (Input.GetMouseButtonDown (1)) {
 			indicadorClick.transform.position = new Vector2 (mousePosition.x,mousePosition.y);
@@ -77,6 +80,8 @@ public class GameController : MonoBehaviour {
 
 			if(GlobalController.onTriggerObjeto==true){
 				target = new Vector2 (GlobalController.pObjetoX, GlobalController.pObjetoY);
+
+				RaycastHit2D hit = Physics2D.Raycast (originPosition, target - originPosition,Vector2.Distance(originPosition,target));
 
 				animacion.SetBool ("caminar",true);
 

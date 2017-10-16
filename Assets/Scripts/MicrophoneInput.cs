@@ -12,17 +12,24 @@ public class MicrophoneInput : MonoBehaviour {
 
 	void Start() {        
 		keywords.Add ("Abrir", () => {
-			Abrir();		
+			Accion("Abrir");		
 		});
 
 		keywords.Add ("Coger", () => {
-			Coger();		
+			Accion("Coger");		
 		});
 
-		keywords.Add ("Mira", () => {
-			Mirar();		
+		keywords.Add ("Mirar", () => {
+			Accion("Mirar");		
 		});
 
+		keywords.Add ("Ir", () => {
+			Accion("Ir");		
+		});
+
+		keywords.Add ("Ir", () => {
+			Accion("Ir");		
+		});
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
 		keywordRecognizer.OnPhraseRecognized += KeywordRecognizerOnPhraseRecognized;
 		keywordRecognizer.Start ();
@@ -36,16 +43,22 @@ public class MicrophoneInput : MonoBehaviour {
 		}
 	}
 
-	void Abrir(){
-		print ("Abrir");
+	void Accion(string accion){
+		if (accion.Equals ("Abrir")) {
+				
+		} else if (accion.Equals ("Coger")) {
+		
+		} else if (accion.Equals ("Mirar")) {
+		
+		} else if(accion.Equals("Ir")){
+		
+		}
 	}
 
-	void Coger(){
-		print ("Coger");
-	}
-
-	void Mirar(){
-		print ("Mirar");
+	void Objeto(string objeto){
+		if(objeto.Equals("Basurero")){
+			
+		}
 	}
 
 	void Update(){    
