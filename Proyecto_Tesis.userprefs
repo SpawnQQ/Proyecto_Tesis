@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MicrophoneInput.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameController.cs" Line="69" Column="3" />
-      <File FileName="Assets\Scripts\MicrophoneInput.cs" Line="46" Column="6" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="20" Column="2" />
+      <File FileName="Assets\Scripts\MicrophoneInput.cs" Line="50" Column="3" />
       <File FileName="Assets\Scripts\OnTriggerBasurero.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\DBConnector.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GlobalController.cs" Line="1" Column="1" />

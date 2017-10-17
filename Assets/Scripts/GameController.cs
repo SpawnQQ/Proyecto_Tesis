@@ -62,13 +62,15 @@ public class GameController : MonoBehaviour {
 			movimientoRaton ();
 			movimientoAccion ();
 		}
-			
-	}
 
-	void acciones(){
+		if(MicrophoneInput.accion!=null){
+			Debug.Log (MicrophoneInput.accion);
+			if(MicrophoneInput.objeto!=null){
+				Debug.Log (MicrophoneInput.objeto);
+			}
+		}
+	}
 		
-	}
-
 	void movimientoAccion(){
 		Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
 		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);

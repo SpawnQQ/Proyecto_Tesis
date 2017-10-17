@@ -6,29 +6,32 @@ using UnityEngine.Windows.Speech;
 using System.Linq;
 
 public class MicrophoneInput : MonoBehaviour {
-	
+
+	public static string accion=null;
+	public static string objeto=null;
+
 	KeywordRecognizer keywordRecognizer;
 	Dictionary<string,System.Action> keywords=new Dictionary<string,System.Action>();
 
 	void Start() {        
 		keywords.Add ("Abrir", () => {
-			Accion("Abrir");		
+			accion="Abrir";		
 		});
 
 		keywords.Add ("Coger", () => {
-			Accion("Coger");		
+			accion="Coger";		
 		});
 
 		keywords.Add ("Mirar", () => {
-			Accion("Mirar");		
+			accion="Mirar";		
 		});
 
 		keywords.Add ("Ir", () => {
-			Accion("Ir");		
+			accion="Ir";		
 		});
 
-		keywords.Add ("Ir", () => {
-			Accion("Ir");		
+		keywords.Add ("Basurero", () => {
+			objeto="Basurero";		
 		});
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
 		keywordRecognizer.OnPhraseRecognized += KeywordRecognizerOnPhraseRecognized;
@@ -43,25 +46,7 @@ public class MicrophoneInput : MonoBehaviour {
 		}
 	}
 
-	void Accion(string accion){
-		if (accion.Equals ("Abrir")) {
-				
-		} else if (accion.Equals ("Coger")) {
+	void Update(){
 		
-		} else if (accion.Equals ("Mirar")) {
-		
-		} else if(accion.Equals("Ir")){
-		
-		}
-	}
-
-	void Objeto(string objeto){
-		if(objeto.Equals("Basurero")){
-			
-		}
-	}
-
-	void Update(){    
-	
 	}    
 }
