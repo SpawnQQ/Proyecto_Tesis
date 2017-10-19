@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour {
 	public GameObject indicadorClick;
 	public GameObject player;
 
+	string accion;
+	string objeto;
+
 	bool moving;
 	Vector2 target;
 	Vector2 final;
@@ -32,6 +35,8 @@ public class GameController : MonoBehaviour {
 	bool estaParado=true;
 	bool navMesh=false;
 	bool movimientoPorVoz = false;
+	bool mirar = false;
+	bool caminar = false;
 
 	private DBConnector _connector;
 
@@ -62,34 +67,102 @@ public class GameController : MonoBehaviour {
 		}else {
 			movimientoRaton ();
 			movimientoAccion ();
+			movimiento ();
 		}
 
-		if(MicrophoneInput.accion!=null){
+		if (MicrophoneInput.accion != null) {
 			Debug.Log (MicrophoneInput.accion);
-			if(MicrophoneInput.objeto!=null){
-				Debug.Log (MicrophoneInput.objeto);
-				microfonoAccion ();
+			if (MicrophoneInput.accion.Equals ("Usar")) {
+
+				if (MicrophoneInput.objetoInventario != null) {
+					Debug.Log (MicrophoneInput.objetoInventario);
+
+					if (MicrophoneInput.objeto != null) {
+						Debug.Log (MicrophoneInput.objeto);
+						microfonoAccion ();
+					}
+				} else {
+					MicrophoneInput.objeto = null;
+				}
+			} else {
+				if (MicrophoneInput.objeto != null) {
+					Debug.Log (MicrophoneInput.objeto);
+					microfonoAccion ();
+				}
+			}
+		} else {
+			MicrophoneInput.objeto = null;
+			MicrophoneInput.objetoInventario = null;
+		}
+	}
+
+	void movimiento(){
+		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
+
+		if (moving == true) {
+			player.transform.position = Vector2.MoveTowards (originPosition, target, speed* Time.deltaTime);
+			if (Vector2.Distance (player.transform.position, target) < 0.1f) {
+				moving = false;
+				GlobalController.onTriggerObjeto = false;
+
+				if (navMesh == true && (player.transform.position.x!=GlobalController.pObjetoX && player.transform.position.y!=GlobalController.pObjetoY)) {
+					RaycastHit2D hitVerificador = Physics2D.Raycast (new Vector2 (player.transform.position.x, player.transform.position.y), final - new Vector2 (player.transform.position.x, player.transform.position.y), Vector2.Distance (new Vector2 (player.transform.position.x, player.transform.position.y), final));
+					if (hitVerificador.collider != null) {
+						if (Vector2.Distance (player.transform.position, hitVerificador.point) > Mathf.Sqrt (2)) {
+							target = new Vector2 (Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).x, Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).y);
+							moving = true;
+						} else {
+							target = new Vector2 (NavMesh (originPosition, final, target).x, NavMesh (originPosition, final, target).y);
+							moving = true;
+						}
+					} else {
+						target = new Vector2 (final.x, final.y);
+						moving = true;
+						navMesh = false;
+					}
+				} else {
+					animacion.SetBool ("caminar", false);
+					moving = false;
+					estaParado = true;
+
+					if (mirar == true) {
+						Debug.Log ("Mirar objeto");
+						mirar = false;
+					} else if (movimientoPorVoz == true) {
+						//Aca realizamos la accion sobre un objeto
+						accion_objeto ();
+					} else if (caminar == true) {
+						
+					}
+
+					movimientoPorVoz = false;
+					mirar = false;
+					caminar = false;
+
+					accion = null;
+					objeto = null;
+				}
 			}
 		}
+	}
 
-		if(movimientoPorVoz==true){
-			movimientoVoz ();
+	void accion_objeto(){
+		if (accion.Equals ("Abrir") && objeto.Equals ("Basurero")) {
+
+		} else if (accion.Equals ("Ir") && objeto.Equals ("Basurero")) {
+
+		} else if (accion.Equals ("Mirar") && objeto.Equals ("Basurero")) {
+
+		} else if(accion.Equals ("Coger") && objeto.Equals ("Basurero")){
+
 		}
 	}
 
 	void microfonoAccion(){
+		accion = MicrophoneInput.accion;
+		objeto = MicrophoneInput.objeto;
+
 		GameObject objetoLLamado=GameObject.Find(MicrophoneInput.objeto);
-
-
-		if (MicrophoneInput.accion.Equals ("Abrir") && MicrophoneInput.objeto.Equals ("Basurero")) {
-
-		} else if (MicrophoneInput.accion.Equals ("Ir") && MicrophoneInput.objeto.Equals ("Basurero")) {
-
-		} else if (MicrophoneInput.accion.Equals ("Mirar") && MicrophoneInput.objeto.Equals ("Basurero")) {
-
-		} else if(MicrophoneInput.accion.Equals ("Coger") && MicrophoneInput.objeto.Equals ("Basurero")){
-		
-		}
 
 		target = new Vector2 (objetoLLamado.transform.position.x, objetoLLamado.transform.position.y - (objetoLLamado.GetComponent<SpriteRenderer> ().sprite.pivot.y / 2));
 
@@ -97,6 +170,8 @@ public class GameController : MonoBehaviour {
 		MicrophoneInput.accion = null;
 		MicrophoneInput.objeto = null;
 		movimientoPorVoz = true;
+		caminar = false;
+		mirar = false;
 
 		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
 		//Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
@@ -130,47 +205,15 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	void movimientoVoz(){
-		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
-
-		if (moving == true) {
-			player.transform.position = Vector2.MoveTowards (originPosition, target, (speed-35 )* Time.deltaTime);
-			if (Vector2.Distance (player.transform.position, target) < 0.1f) {
-				moving = false;
-				GlobalController.onTriggerObjeto = false;
-
-				if (navMesh == true && (player.transform.position.x!=GlobalController.pObjetoX && player.transform.position.y!=GlobalController.pObjetoY)) {
-					RaycastHit2D hitVerificador = Physics2D.Raycast (new Vector2 (player.transform.position.x, player.transform.position.y), final - new Vector2 (player.transform.position.x, player.transform.position.y), Vector2.Distance (new Vector2 (player.transform.position.x, player.transform.position.y), final));
-					if (hitVerificador.collider != null) {
-						if (Vector2.Distance (player.transform.position, hitVerificador.point) > Mathf.Sqrt (2)) {
-							target = new Vector2 (Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).x, Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).y);
-							moving = true;
-						} else {
-							target = new Vector2 (NavMesh (originPosition, final, target).x, NavMesh (originPosition, final, target).y);
-							moving = true;
-						}
-					} else {
-						target = new Vector2 (final.x, final.y);
-						moving = true;
-						navMesh = false;
-					}
-				} else {
-					animacion.SetBool ("caminar", false);
-					moving = false;
-					estaParado = true;
-					movimientoPorVoz = false;
-				}
-			}
-		}
-	}
-
 	void movimientoAccion(){
 		Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
 		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
 
 		if (Input.GetMouseButtonDown (1)) {
+			mirar = true;
 			movimientoPorVoz = false;
+			caminar = false;
 
 			indicadorClick.transform.position = new Vector2 (mousePosition.x,mousePosition.y);
 			StartCoroutine (IndicadorClick(respaldoPosicion));
@@ -208,36 +251,6 @@ public class GameController : MonoBehaviour {
 				}
 			}
 		}
-
-		if (moving == true) {
-			player.transform.position = Vector2.MoveTowards (originPosition, target, speed * Time.deltaTime);
-			if (Vector2.Distance (player.transform.position, target) < 0.1f) {
-				moving = false;
-				GlobalController.onTriggerObjeto = false;
-
-				if (navMesh == true && (player.transform.position.x!=GlobalController.pObjetoX && player.transform.position.y!=GlobalController.pObjetoY)) {
-					RaycastHit2D hitVerificador = Physics2D.Raycast (new Vector2 (player.transform.position.x, player.transform.position.y), final - new Vector2 (player.transform.position.x, player.transform.position.y), Vector2.Distance (new Vector2 (player.transform.position.x, player.transform.position.y), final));
-					if (hitVerificador.collider != null) {
-						if (Vector2.Distance (player.transform.position, hitVerificador.point) > Mathf.Sqrt (2)) {
-							target = new Vector2 (Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).x, Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).y);
-							moving = true;
-						} else {
-							target = new Vector2 (NavMesh (originPosition, final, target).x, NavMesh (originPosition, final, target).y);
-							moving = true;
-						}
-					} else {
-						target = new Vector2 (final.x, final.y);
-						moving = true;
-						navMesh = false;
-					}
-				} else {
-					animacion.SetBool ("caminar", false);
-					moving = false;
-					estaParado = true;
-					Debug.Log ("Mirar objeto");
-				}
-			}
-		}
 	}
 
 	void movimientoRaton (){
@@ -256,7 +269,9 @@ public class GameController : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonDown (0)) {
+			mirar = false;
 			movimientoPorVoz = false;
+			caminar = true;
 
 			Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
 
@@ -353,36 +368,6 @@ public class GameController : MonoBehaviour {
 				textoRaton.text = "";
 				secondsCounter = 0;
 				hablaRaton = false;
-			}
-		}
-
-		if (moving == true) {
-			player.transform.position = Vector2.MoveTowards (originPosition, target, speed * Time.deltaTime);
-			if (Vector2.Distance (player.transform.position, target) < 0.1f) {
-				moving = false;
-				GlobalController.onTriggerObjeto = false;
-
-				if (navMesh == true && (player.transform.position.x!=GlobalController.pObjetoX && player.transform.position.y!=GlobalController.pObjetoY)) {
-					RaycastHit2D hitVerificador = Physics2D.Raycast (new Vector2 (player.transform.position.x, player.transform.position.y), final - new Vector2 (player.transform.position.x, player.transform.position.y), Vector2.Distance (new Vector2 (player.transform.position.x, player.transform.position.y), final));
-					if (hitVerificador.collider != null) {
-						if (Vector2.Distance (player.transform.position, hitVerificador.point) > Mathf.Sqrt (2)) {
-							target = new Vector2 (Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).x, Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).y);
-							moving = true;
-						} else {
-							target = new Vector2 (NavMesh (originPosition, final, target).x, NavMesh (originPosition, final, target).y);
-							moving = true;
-						}
-					} else {
-						target = new Vector2 (final.x, final.y);
-						moving = true;
-						navMesh = false;
-					}
-				} else {
-					animacion.SetBool ("caminar", false);
-					moving = false;
-					estaParado = true;
-
-				}
 			}
 		}
 	}

@@ -9,6 +9,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 	public static string accion=null;
 	public static string objeto=null;
+	public static string objetoInventario = null;
 
 	KeywordRecognizer keywordRecognizer;
 	Dictionary<string,System.Action> keywords=new Dictionary<string,System.Action>();
@@ -30,9 +31,22 @@ public class MicrophoneInput : MonoBehaviour {
 			accion="Ir";		
 		});
 
+		keywords.Add ("Usar", () => {
+			accion="Usar";		
+		});
+
 		keywords.Add ("Basurero", () => {
 			objeto="Basurero";		
 		});
+
+		keywords.Add ("Queso", () => {
+			objetoInventario="Queso";		
+		});
+
+		keywords.Add ("Zapato", () => {
+			objetoInventario="Zapato";		
+		});
+
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
 		keywordRecognizer.OnPhraseRecognized += KeywordRecognizerOnPhraseRecognized;
 		keywordRecognizer.Start ();
