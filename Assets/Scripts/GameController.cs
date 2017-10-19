@@ -31,7 +31,8 @@ public class GameController : MonoBehaviour {
 
 	bool estaParado=true;
 	bool navMesh=false;
-	 
+	bool movimientoPorVoz = false;
+
 	private DBConnector _connector;
 
 	MenuController menuController;
@@ -67,16 +68,110 @@ public class GameController : MonoBehaviour {
 			Debug.Log (MicrophoneInput.accion);
 			if(MicrophoneInput.objeto!=null){
 				Debug.Log (MicrophoneInput.objeto);
+				microfonoAccion ();
+			}
+		}
+
+		if(movimientoPorVoz==true){
+			movimientoVoz ();
+		}
+	}
+
+	void microfonoAccion(){
+		GameObject objetoLLamado=GameObject.Find(MicrophoneInput.objeto);
+
+
+		if (MicrophoneInput.accion.Equals ("Abrir") && MicrophoneInput.objeto.Equals ("Basurero")) {
+
+		} else if (MicrophoneInput.accion.Equals ("Ir") && MicrophoneInput.objeto.Equals ("Basurero")) {
+
+		} else if (MicrophoneInput.accion.Equals ("Mirar") && MicrophoneInput.objeto.Equals ("Basurero")) {
+
+		} else if(MicrophoneInput.accion.Equals ("Coger") && MicrophoneInput.objeto.Equals ("Basurero")){
+		
+		}
+
+		target = new Vector2 (objetoLLamado.transform.position.x, objetoLLamado.transform.position.y - (objetoLLamado.GetComponent<SpriteRenderer> ().sprite.pivot.y / 2));
+
+		//this.gameObject.transform.position.y - (this.gameObject.GetComponent<SpriteRenderer> ().sprite.pivot.y / 2)
+		MicrophoneInput.accion = null;
+		MicrophoneInput.objeto = null;
+		movimientoPorVoz = true;
+
+		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
+		//Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
+		RaycastHit2D hit = Physics2D.Raycast (originPosition, target - originPosition,Vector2.Distance(originPosition,target));
+
+		animacion.SetBool ("caminar",true);
+
+		rotarObjeto (player,originPosition.x,target.x);
+
+		if (hit.collider != null) {
+			if (estaParado == true) {
+				StartCoroutine (comenzarCaminar ());
+				estaParado = false;
+			} else {
+				moving = true;
+			}
+
+			final = new Vector2 (target.x, target.y);
+			navMesh = true;
+
+			target = new Vector2 (Acercarse (originPosition, hit.point).x, Acercarse (originPosition, hit.point).y);
+		} else {
+			//No esta colisionando con nada.
+
+			if (estaParado == true) {
+				StartCoroutine (comenzarCaminar ());
+				estaParado = false;
+			} else {
+				moving = true;
 			}
 		}
 	}
-		
+
+	void movimientoVoz(){
+		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
+
+		if (moving == true) {
+			player.transform.position = Vector2.MoveTowards (originPosition, target, (speed-35 )* Time.deltaTime);
+			if (Vector2.Distance (player.transform.position, target) < 0.1f) {
+				moving = false;
+				GlobalController.onTriggerObjeto = false;
+
+				if (navMesh == true && (player.transform.position.x!=GlobalController.pObjetoX && player.transform.position.y!=GlobalController.pObjetoY)) {
+					RaycastHit2D hitVerificador = Physics2D.Raycast (new Vector2 (player.transform.position.x, player.transform.position.y), final - new Vector2 (player.transform.position.x, player.transform.position.y), Vector2.Distance (new Vector2 (player.transform.position.x, player.transform.position.y), final));
+					if (hitVerificador.collider != null) {
+						if (Vector2.Distance (player.transform.position, hitVerificador.point) > Mathf.Sqrt (2)) {
+							target = new Vector2 (Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).x, Acercarse (new Vector2 (player.transform.position.x, player.transform.position.y), hitVerificador.point).y);
+							moving = true;
+						} else {
+							target = new Vector2 (NavMesh (originPosition, final, target).x, NavMesh (originPosition, final, target).y);
+							moving = true;
+						}
+					} else {
+						target = new Vector2 (final.x, final.y);
+						moving = true;
+						navMesh = false;
+					}
+				} else {
+					animacion.SetBool ("caminar", false);
+					moving = false;
+					estaParado = true;
+					movimientoPorVoz = false;
+				}
+			}
+		}
+	}
+
 	void movimientoAccion(){
 		Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
 		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
 
 		if (Input.GetMouseButtonDown (1)) {
+			movimientoPorVoz = false;
+
 			indicadorClick.transform.position = new Vector2 (mousePosition.x,mousePosition.y);
 			StartCoroutine (IndicadorClick(respaldoPosicion));
 
@@ -139,7 +234,7 @@ public class GameController : MonoBehaviour {
 					animacion.SetBool ("caminar", false);
 					moving = false;
 					estaParado = true;
-
+					Debug.Log ("Mirar objeto");
 				}
 			}
 		}
@@ -161,7 +256,7 @@ public class GameController : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonDown (0)) {
-			Debug.Log ("No deberia entrar");
+			movimientoPorVoz = false;
 
 			Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
 
