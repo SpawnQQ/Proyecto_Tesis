@@ -39,6 +39,10 @@ public class MicrophoneInput : MonoBehaviour {
 			objeto="Basurero";		
 		});
 
+		keywords.Add ("Platano", () => {
+			objeto="Platano";		
+		});
+
 		keywords.Add ("Queso", () => {
 			objetoInventario="Queso";		
 		});

@@ -20,14 +20,6 @@ public class GameController : MonoBehaviour {
 	public Text textoRaton;
 
 	public Animator animacion;
-
-//	public AnimationClip agacharse_raton;
-//	public AnimationClip pararse_raton;
-//	public AnimationClip caminar_raton;
-//	public AnimationClip rascandose_raton;
-//
-//	private Animation animacion;
-//
 	float secondsCounter;
 	float tiempo_texto=3;
 	bool hablaRaton;
@@ -41,6 +33,8 @@ public class GameController : MonoBehaviour {
 	private DBConnector _connector;
 
 	MenuController menuController;
+
+	public Sprite basureroSinTapa;
 
 	void Start () {
 		moving = false;
@@ -126,7 +120,11 @@ public class GameController : MonoBehaviour {
 					estaParado = true;
 
 					if (mirar == true) {
-						Debug.Log ("Mirar objeto");
+						if (GlobalController.objetoClickeado.name.Equals ("Basurero")) {
+							hablar ("Es un basurero, de aspecto descuidado");
+						} else if(GlobalController.objetoClickeado.name.Equals ("Platano")){
+							hablar ("Una cascara de platano");
+						}
 						mirar = false;
 					} else if (movimientoPorVoz == true) {
 						//Aca realizamos la accion sobre un objeto
@@ -148,11 +146,11 @@ public class GameController : MonoBehaviour {
 
 	void accion_objeto(){
 		if (accion.Equals ("Abrir") && objeto.Equals ("Basurero")) {
-
+			GameObject.Find (objeto).GetComponent<SpriteRenderer> ().sprite = basureroSinTapa;
 		} else if (accion.Equals ("Ir") && objeto.Equals ("Basurero")) {
 
 		} else if (accion.Equals ("Mirar") && objeto.Equals ("Basurero")) {
-
+			hablar ("Es un basurero, de aspecto descuidado");
 		} else if(accion.Equals ("Coger") && objeto.Equals ("Basurero")){
 
 		}
@@ -320,7 +318,7 @@ public class GameController : MonoBehaviour {
 						target = new Vector2 (Acercarse (originPosition, hit.point).x, Acercarse (originPosition, hit.point).y);
 
 					} else {
-						Debug.Log ("Hay un obstaculo");
+						//Hay un obstaculo
 
 						if (estaParado == true) {
 							StartCoroutine (comenzarCaminar ());
@@ -370,6 +368,10 @@ public class GameController : MonoBehaviour {
 				hablaRaton = false;
 			}
 		}
+	}
+
+	void hablar(string texto){
+		StartCoroutine (tiempoTexto(texto));
 	}
 
 	Vector2 Acercarse(Vector2 origin, Vector2 hitPoint){
@@ -507,8 +509,11 @@ public class GameController : MonoBehaviour {
 	void rotarObjeto(GameObject objeto, float originPositionX, float targetPositionX){
 		if( targetPositionX < originPositionX){
 			objeto.transform.rotation = Quaternion.Euler(player.transform.rotation.x,180f,player.transform.rotation.z);
+			objeto.transform.GetChild(0).gameObject.transform.rotation=Quaternion.Euler(0f,0f,0f);
+
 		}else if(targetPositionX > originPositionX){
 			objeto.transform.rotation = Quaternion.Euler(player.transform.rotation.x,0f,player.transform.rotation.z);
+			objeto.transform.GetChild(0).gameObject.transform.rotation=Quaternion.Euler(0f,0f,0f);
 		}
 	}
 
@@ -521,6 +526,12 @@ public class GameController : MonoBehaviour {
 	IEnumerator IndicadorClick(Vector2 respaldoPosicion){
 		yield return new WaitForSeconds(0.00000000000000000000000001f);
 		indicadorClick.transform.position = new Vector2 (respaldoPosicion.x,respaldoPosicion.y);
+	}
+
+	IEnumerator tiempoTexto (string texto){
+		player.transform.GetChild (0).gameObject.GetComponent<Text> ().text = texto;
+		yield return new WaitForSeconds(3f);
+		player.transform.GetChild (0).gameObject.GetComponent<Text> ().text=null;
 	}
 }
 

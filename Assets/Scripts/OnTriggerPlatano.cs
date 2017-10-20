@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnTriggerBasurero : MonoBehaviour {
+public class OnTriggerPlatano : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
