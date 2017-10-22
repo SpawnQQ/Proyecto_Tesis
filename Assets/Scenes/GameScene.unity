@@ -941,7 +941,6 @@ GameObject:
   - component: {fileID: 1915315964}
   - component: {fileID: 1915315963}
   - component: {fileID: 1915315965}
-  - component: {fileID: 1915315966}
   m_Layer: 5
   m_Name: Basurero
   m_TagString: Objeto
@@ -1083,17 +1082,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 432b335fb14cb074390166e1c56b3635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1915315966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1915315959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814929a80791ae94abf8562d9c62c1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1922653801

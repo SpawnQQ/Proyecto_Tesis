@@ -43,11 +43,9 @@ public class GameController : MonoBehaviour {
 
 		Debug.Log("Datos usuario: "+GlobalController.ID+", "+GlobalController.NAME+", "+GlobalController.TYPE);
 
-//		animacion = this.gameObject.AddComponent<Animation> ();
-//		animacion.AddClip (agacharse_raton,"agacharse");
-//		animacion.AddClip (pararse_raton,"pararse");
-//		animacion.AddClip (caminar_raton,"caminar");
-//		animacion.AddClip (rascandose_raton,"rascandose");
+		if(ExisteObjeto (GlobalController.ID,"Platano")){
+			Destroy (GameObject.Find("Platano"),0f);
+		}
 
 	}
 		
@@ -58,7 +56,9 @@ public class GameController : MonoBehaviour {
 		} else if (Input.GetKey (KeyCode.I)) {
 			SceneManager.LoadScene ("Inventario");
 
-		}else {
+		} else if (Input.GetKey (KeyCode.F1)) {
+			SceneManager.LoadScene ("ShowCharacters");
+		} else {
 			movimientoRaton ();
 			movimientoAccion ();
 			movimiento ();
@@ -68,17 +68,21 @@ public class GameController : MonoBehaviour {
 			Debug.Log (MicrophoneInput.accion);
 			if (MicrophoneInput.accion.Equals ("Usar")) {
 
-				if (MicrophoneInput.objetoInventario != null) {
-					Debug.Log (MicrophoneInput.objetoInventario);
-
-					if (MicrophoneInput.objeto != null) {
-						Debug.Log (MicrophoneInput.objeto);
-						microfonoAccion ();
+				if (MicrophoneInput.objetoInventario != null ) {
+					
+					if(ExisteObjeto (GlobalController.ID,MicrophoneInput.objetoInventario)){
+						if (MicrophoneInput.objeto != null) {
+							Debug.Log (MicrophoneInput.objeto);
+							microfonoAccion ();
+						}
 					}
+
 				} else {
 					MicrophoneInput.objeto = null;
 				}
 			} else {
+				MicrophoneInput.objetoInventario = null;
+
 				if (MicrophoneInput.objeto != null) {
 					Debug.Log (MicrophoneInput.objeto);
 					microfonoAccion ();
@@ -89,6 +93,39 @@ public class GameController : MonoBehaviour {
 			MicrophoneInput.objetoInventario = null;
 		}
 	}
+
+	void accion_objeto(){
+		if (accion.Equals ("Abrir")) {
+			if (objeto.Equals ("Basurero")) {
+				GameObject.Find (objeto).GetComponent<SpriteRenderer> ().sprite = basureroSinTapa;
+			} else {
+				hablar ("No puedo abrir ese objeto");
+			}
+		} else if (accion.Equals ("Ir")) {
+			if (objeto.Equals ("Basurero")) {
+
+			} else if(objeto.Equals ("Platano")){
+
+			}
+		} else if (accion.Equals ("Mirar")) {
+			if (objeto.Equals ("Basurero")) {
+				hablar ("Es un basurero!");
+			} else if(objeto.Equals ("Platano")){
+				hablar ("Es un platano!");
+			}
+
+		} else if(accion.Equals ("Coger") ){
+			if (objeto.Equals ("Platano")) {
+				Destroy (GameObject.Find("Platano"),.5f);
+				CrearObjeto ("Platano", "Es un platano!", 1, GlobalController.ID);
+
+			} else {
+				hablar ("No puedo coger eso");
+			} 
+
+		}
+	}
+
 
 	void movimiento(){
 		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
@@ -143,19 +180,7 @@ public class GameController : MonoBehaviour {
 			}
 		}
 	}
-
-	void accion_objeto(){
-		if (accion.Equals ("Abrir") && objeto.Equals ("Basurero")) {
-			GameObject.Find (objeto).GetComponent<SpriteRenderer> ().sprite = basureroSinTapa;
-		} else if (accion.Equals ("Ir") && objeto.Equals ("Basurero")) {
-
-		} else if (accion.Equals ("Mirar") && objeto.Equals ("Basurero")) {
-			hablar ("Es un basurero, de aspecto descuidado");
-		} else if(accion.Equals ("Coger") && objeto.Equals ("Basurero")){
-
-		}
-	}
-
+		
 	void microfonoAccion(){
 		accion = MicrophoneInput.accion;
 		objeto = MicrophoneInput.objeto;
@@ -532,6 +557,23 @@ public class GameController : MonoBehaviour {
 		player.transform.GetChild (0).gameObject.GetComponent<Text> ().text = texto;
 		yield return new WaitForSeconds(3f);
 		player.transform.GetChild (0).gameObject.GetComponent<Text> ().text=null;
+	}
+
+	public void CrearObjeto(string _name, string _description, int _lot,int _id_personaje){
+		_connector=gameObject.AddComponent<DBConnector> ();
+		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
+		_connector.InsertDataObjeto (_name,_description,_lot,_id_personaje);
+		_connector.CloseWriteDB ();
+	}
+
+	public bool ExisteObjeto(int _id_personaje, string _nombre_objeto){
+		bool aux;
+		_connector=gameObject.AddComponent<DBConnector> ();
+		_connector.OpenDB ("URI=file:Assets\\DB\\database.db");
+		aux = _connector.ExisteObjetoNombre (_id_personaje, _nombre_objeto);
+		_connector.CloseDB ();
+		return aux;
+
 	}
 }
 

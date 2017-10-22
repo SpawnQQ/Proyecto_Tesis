@@ -97,6 +97,22 @@ public class DBConnector : MonoBehaviour {
 		}
 	}
 
+	public bool ExisteObjetoNombre(int _id_personaje, string _name){
+		_query = "SELECT * FROM Objeto";
+		_command = _conexion.CreateCommand ();
+		_command.CommandText = _query;
+		_reader = _command.ExecuteReader ();
+
+		if(_reader != null){
+			while(_reader.Read()){
+				if(_reader.GetInt32 (4)==_id_personaje && _reader.GetValue(1).ToString().Equals(_name)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public void InsertDataObjeto(string _name, string _description,int lot,int _id_personaje){
 		_query = "INSERT INTO Objeto (name,description,lot,id_personaje) VALUES('" + _name + "', '" + _description + "', '" + lot + "', '" + _id_personaje + "')";
 		_command = _conexion.CreateCommand ();
