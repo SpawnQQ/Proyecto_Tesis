@@ -18,6 +18,9 @@ public class GlobalController : MonoBehaviour {
 
 	public static bool onTriggerObjeto=false;
 
+	public static bool salirE1_E2=false;
+	public static bool salirE2_E1=false;
+
 	public static GameObject objetoClickeado=null;
 
 	public void BtnLoadGame(){

@@ -62,6 +62,8 @@
      <Compile Include="Assets\Scripts\OnTrigger.cs" />
      <Compile Include="Assets\Scripts\OnTriggerBasurero.cs" />
      <Compile Include="Assets\Scripts\OnTriggerPlatano.cs" />
+     <Compile Include="Assets\Scripts\S1E1_E2.cs" />
+     <Compile Include="Assets\Scripts\S1E2_E1.cs" />
      <Compile Include="Assets\Scripts\TileMap.cs" />
      <Compile Include="Assets\Scripts\TileType.cs" />
  <Reference Include="Facebook.Unity.Settings">

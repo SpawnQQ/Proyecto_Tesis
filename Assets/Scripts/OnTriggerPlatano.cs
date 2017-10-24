@@ -15,7 +15,7 @@ public class OnTriggerPlatano : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		if(col.gameObject.tag=="IndicadorClick"){
+		if(col.gameObject.tag=="IndicadorClickDerecho"){
 			GlobalController.pObjetoX = this.gameObject.transform.position.x;
 			GlobalController.pObjetoY = (this.gameObject.transform.position.y - (this.gameObject.GetComponent<SpriteRenderer> ().sprite.pivot.y / 2));
 			GlobalController.onTriggerObjeto = true;

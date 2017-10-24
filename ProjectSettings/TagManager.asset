@@ -11,8 +11,9 @@ TagManager:
   - PnlCharacters
   - PnlDataDB
   - ImagenSeleccionSC
-  - IndicadorClick
   - IndicadorStay
+  - IndicadorClickDerecho
+  - IndicadorClickIzquierdo
   layers:
   - Default
   - TransparentFX

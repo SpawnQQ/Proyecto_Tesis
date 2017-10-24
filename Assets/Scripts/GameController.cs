@@ -8,7 +8,8 @@ public class GameController : MonoBehaviour {
 
 	public float speed;
 	public GameObject indicador;
-	public GameObject indicadorClick;
+	public GameObject indicadorClickDerecho;
+	public GameObject indicadorClickIzquierdo;
 	public GameObject player;
 
 	string accion;
@@ -158,7 +159,7 @@ public class GameController : MonoBehaviour {
 
 					if (mirar == true) {
 						if (GlobalController.objetoClickeado.name.Equals ("Basurero")) {
-							hablar ("Es un basurero, de aspecto descuidado");
+							hablar ("Es un basurero!");
 						} else if(GlobalController.objetoClickeado.name.Equals ("Platano")){
 							hablar ("Una cascara de platano");
 						}
@@ -167,12 +168,23 @@ public class GameController : MonoBehaviour {
 						//Aca realizamos la accion sobre un objeto
 						accion_objeto ();
 					} else if (caminar == true) {
-						
+						if (GlobalController.salirE1_E2 == true) {
+							Camera.main.transform.position = new Vector3 (1000f, 0f, -10f);
+							player.transform.position = new Vector2 (600f, player.transform.position.y);
+						} else if(GlobalController.salirE2_E1 == true){
+							Camera.main.transform.position = new Vector3 (0f, 0f, -10f);
+							player.transform.position = new Vector2 (400f, player.transform.position.y);
+							player.transform.rotation = Quaternion.Euler(player.transform.rotation.x,180f,player.transform.rotation.z);
+							player.transform.GetChild(0).gameObject.transform.rotation=Quaternion.Euler(0f,0f,0f);
+						}
 					}
 
 					movimientoPorVoz = false;
 					mirar = false;
 					caminar = false;
+
+					GlobalController.salirE1_E2=false;
+					GlobalController.salirE2_E1=false;
 
 					accion = null;
 					objeto = null;
@@ -229,7 +241,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	void movimientoAccion(){
-		Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
+		//Vector2 respaldoPosicion = new Vector2 (indicadorClickDerecho.transform.position.x,indicadorClickDerecho.transform.position.y);
 		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 		Vector2 originPosition = new Vector2 (player.transform.position.x, player.transform.position.y);
 
@@ -238,8 +250,8 @@ public class GameController : MonoBehaviour {
 			movimientoPorVoz = false;
 			caminar = false;
 
-			indicadorClick.transform.position = new Vector2 (mousePosition.x,mousePosition.y);
-			StartCoroutine (IndicadorClick(respaldoPosicion));
+			indicadorClickDerecho.transform.position = new Vector2 (mousePosition.x,mousePosition.y);
+			StartCoroutine (IndicadorClickDerecho());
 
 			if(GlobalController.onTriggerObjeto==true){
 				target = new Vector2 (GlobalController.pObjetoX, GlobalController.pObjetoY);
@@ -296,7 +308,7 @@ public class GameController : MonoBehaviour {
 			movimientoPorVoz = false;
 			caminar = true;
 
-			Vector2 respaldoPosicion = new Vector2 (indicadorClick.transform.position.x,indicadorClick.transform.position.y);
+			//Vector2 respaldoPosicion = new Vector2 (indicadorClickIzquierdo.transform.position.x,indicadorClickIzquierdo.transform.position.y);
 
 			animacion.SetBool ("caminar",true);
 
@@ -381,8 +393,8 @@ public class GameController : MonoBehaviour {
 					moving = true;
 				}
 			}
-			indicadorClick.transform.position = new Vector2 (mousePosition.x,mousePosition.y);
-			StartCoroutine (IndicadorClick(respaldoPosicion));
+			indicadorClickIzquierdo.transform.position = new Vector2 (mousePosition.x,mousePosition.y);
+			StartCoroutine (IndicadorClickIzquierdo());
 		}
 
 		if(hablaRaton==true){
@@ -548,9 +560,14 @@ public class GameController : MonoBehaviour {
 		moving = true;
 	}
 
-	IEnumerator IndicadorClick(Vector2 respaldoPosicion){
+	IEnumerator IndicadorClickDerecho(){
 		yield return new WaitForSeconds(0.00000000000000000000000001f);
-		indicadorClick.transform.position = new Vector2 (respaldoPosicion.x,respaldoPosicion.y);
+		indicadorClickDerecho.transform.position = new Vector2 (-460f,215f);
+	}
+
+	IEnumerator IndicadorClickIzquierdo(){
+		yield return new WaitForSeconds(0.00000000000000000000000001f);
+		indicadorClickIzquierdo.transform.position = new Vector2 (-470f,215f);
 	}
 
 	IEnumerator tiempoTexto (string texto){
