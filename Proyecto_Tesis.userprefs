@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\OnTrigger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameController.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameController.cs" Line="162" Column="32" />
-      <File FileName="Assets\Scripts\GlobalController.cs" Line="22" Column="31" />
-      <File FileName="Assets\Scripts\S1E1_E2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OnTriggerBasurero.cs" Line="18" Column="48" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="610" Column="62" />
+      <File FileName="Assets\Scripts\GlobalController.cs" Line="26" Column="26" />
+      <File FileName="Assets\Scripts\MicrophoneInput.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\S1E1_E2.cs" Line="21" Column="53" />
       <File FileName="Assets\Scripts\OnTriggerPlatano.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\S1E2_E1.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OnTrigger.cs" Line="19" Column="30" />
+      <File FileName="Assets\Scripts\S1E2_E1.cs" Line="22" Column="53" />
+      <File FileName="Assets\Scripts\OnTrigger.cs" Line="23" Column="47" />
+      <File FileName="Assets\Scripts\DBAccess.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

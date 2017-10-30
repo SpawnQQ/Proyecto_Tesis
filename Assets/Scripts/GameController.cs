@@ -18,7 +18,6 @@ public class GameController : MonoBehaviour {
 	bool moving;
 	Vector2 target;
 	Vector2 final;
-	public Text textoRaton;
 
 	public Animator animacion;
 	float secondsCounter;
@@ -30,6 +29,9 @@ public class GameController : MonoBehaviour {
 	bool movimientoPorVoz = false;
 	bool mirar = false;
 	bool caminar = false;
+
+	public Text textoAccion;
+	public Text textoObjeto;
 
 	private DBConnector _connector;
 
@@ -47,6 +49,8 @@ public class GameController : MonoBehaviour {
 		if(ExisteObjeto (GlobalController.ID,"Platano")){
 			Destroy (GameObject.Find("Platano"),0f);
 		}
+
+
 
 	}
 		
@@ -67,6 +71,8 @@ public class GameController : MonoBehaviour {
 
 		if (MicrophoneInput.accion != null) {
 			Debug.Log (MicrophoneInput.accion);
+			textoAccion.text = MicrophoneInput.accion;
+
 			if (MicrophoneInput.accion.Equals ("Usar")) {
 
 				if (MicrophoneInput.objetoInventario != null ) {
@@ -84,7 +90,8 @@ public class GameController : MonoBehaviour {
 			} else {
 				MicrophoneInput.objetoInventario = null;
 
-				if (MicrophoneInput.objeto != null) {
+				if (MicrophoneInput.objeto != null && ObjetoContenidoMapa(MicrophoneInput.objeto)) {
+					textoObjeto.text = MicrophoneInput.objeto;
 					Debug.Log (MicrophoneInput.objeto);
 					microfonoAccion ();
 				}
@@ -185,6 +192,9 @@ public class GameController : MonoBehaviour {
 
 					GlobalController.salirE1_E2=false;
 					GlobalController.salirE2_E1=false;
+
+					textoAccion.text = null;
+					textoObjeto.text = null;
 
 					accion = null;
 					objeto = null;
@@ -338,7 +348,6 @@ public class GameController : MonoBehaviour {
 						target = new Vector2 (Acercarse (originPosition, hit.point).x, Acercarse (originPosition, hit.point).y);
 
 						Debug.Log ("Hey!, no llego a ese lugar");
-						textoRaton.text = "" + "Hey!, no llego a ese lugar";
 
 						//Aca decimos que comienza a contar el tiempo;
 						hablaRaton = true;
@@ -400,7 +409,6 @@ public class GameController : MonoBehaviour {
 		if(hablaRaton==true){
 			secondsCounter += Time.deltaTime;
 			if(secondsCounter>=tiempo_texto){
-				textoRaton.text = "";
 				secondsCounter = 0;
 				hablaRaton = false;
 			}
@@ -547,7 +555,6 @@ public class GameController : MonoBehaviour {
 		if( targetPositionX < originPositionX){
 			objeto.transform.rotation = Quaternion.Euler(player.transform.rotation.x,180f,player.transform.rotation.z);
 			objeto.transform.GetChild(0).gameObject.transform.rotation=Quaternion.Euler(0f,0f,0f);
-
 		}else if(targetPositionX > originPositionX){
 			objeto.transform.rotation = Quaternion.Euler(player.transform.rotation.x,0f,player.transform.rotation.z);
 			objeto.transform.GetChild(0).gameObject.transform.rotation=Quaternion.Euler(0f,0f,0f);
@@ -591,6 +598,17 @@ public class GameController : MonoBehaviour {
 		_connector.CloseDB ();
 		return aux;
 
+	}
+
+	public bool ObjetoContenidoMapa(string nombreObjeto){
+
+		foreach (Transform child in GlobalController.escenario.GetComponentsInChildren<Transform>()) {
+			if(child.name.Equals(nombreObjeto)){
+				return true;
+			}
+		}
+		Debug.Log (nombreObjeto+" no se encuentra en este escenario");
+		return false;
 	}
 }
 

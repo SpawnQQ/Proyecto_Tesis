@@ -20,7 +20,6 @@ public class S1E2_E1 : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 		if(col.gameObject.tag=="IndicadorClickIzquierdo"){
-			Debug.Log ("Entro");
 			GlobalController.salirE2_E1 = true;
 		}else if(col.gameObject.tag=="IndicadorStay"){
 			indicador.GetComponent<SpriteRenderer> ().sprite = imagenSalida;

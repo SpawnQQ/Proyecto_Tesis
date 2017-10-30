@@ -16,10 +16,11 @@ public class OnTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		Debug.Log (col.gameObject);
-
 		if(col.gameObject.tag=="Objeto"){
 			this.gameObject.GetComponent<SpriteRenderer> ().sortingLayerName = "Player";
+		}
+		if (col.gameObject.tag == "Escenario") {
+			GlobalController.escenario = col.gameObject;
 		}
 	}
 

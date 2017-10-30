@@ -23,6 +23,8 @@ public class GlobalController : MonoBehaviour {
 
 	public static GameObject objetoClickeado=null;
 
+	public static GameObject escenario;
+
 	public void BtnLoadGame(){
 		//Debug.Log ("Datos: "+EventSystem.current.currentSelectedGameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text+", "+EventSystem.current.currentSelectedGameObject.transform.GetChild(1).gameObject.GetComponent<Text>().text+", "+EventSystem.current.currentSelectedGameObject.transform.GetChild(2).gameObject.GetComponent<Image>().sprite.name);
 
